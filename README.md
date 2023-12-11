@@ -1,4 +1,4 @@
-# CLIPDrawX: Primitive-based Explanations for Text Guided Sketch Synthesis
+# DiffuseKronA
 
 ![Logo](static/images/CDx-Logo.png)
 
