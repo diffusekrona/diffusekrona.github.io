@@ -11,11 +11,14 @@ function populateGallery(imageUrls, fname, galleryId) {
         container.appendChild(img);
 
         // Create a caption for each image
+        // Create a caption for each image
         var caption = document.createElement('p');
         caption.textContent = image.replace('.png', ''); // Remove .png from the filename
         caption.className = 'caption'; // Add the 'caption' class to the caption
+        caption.setAttribute('data-text', image.replace('.png', '')); // Set data-text attribute
         container.appendChild(caption);
-
         gallery.appendChild(container);
+
     });
 }
+

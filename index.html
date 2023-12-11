@@ -106,7 +106,20 @@
     margin-bottom: 0;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     font-style: italic;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+    transition: all 0.5s ease; /* Add transition for smooth effect */
+    max-width: 224px;
 }
+
+.caption:hover {
+    overflow: visible;
+    white-space: normal;
+    max-width: 100%; /* Allow the box to expand to full width on hover */
+}
+
 .scroll-box {
   height: 700px; /* Adjust as needed */
   overflow-y: auto;
@@ -283,9 +296,7 @@ table {
       <div class="column  has-text-centered">
           <img id="network" src="static/images/model_dig.png" style="max-width: 100%;"/>
           <div class="content has-text-justified">
-            The main idea of DiffuseKronA is to use the Kronecker product, a matrix multiplication method that captures pairwise interactions between elements of two matrices, to decompose the weight matrices of the attention layers in the UNet model.
-            Kronecker Product is a matrix multiplication method that captures structured relationships and pairwise interactions between elements of two matrices, offering a higher-rank approximation with less parameter count and greater flexibility.
-            Kronecker Adapter replaces the low-rank decomposition in LoRA with the Kronecker product, such that \(W_{\text{pre-trained}}+\Delta W = W_{\text{pre-trained}} + (A \otimes B)\), where A and B are the Kronecker factors, and ⊗ denotes the Kronecker product.
+            The main idea of DiffuseKronA is to leverage the Kronecker product to decompose the weight matrices of the attention layers in the UNet model. Kronecker Product is a matrix multiplication method, that captures structured relationships and pairwise interactions between elements of two matrices. In contrast to the low-rank decomposition in LoRA, the Kronecker Adapter in DiffuseKronA offers a higher-rank approximation with less parameter count and greater flexibility, such that \(W_{\text{pre-trained}}+\Delta W = W_{\text{pre-trained}} + (A \otimes B)\), where A and B are the Kronecker factors, and ⊗ denotes the Kronecker product.
             Kronecker Adapter reduces the computational cost by using the following equivalent matrix-vector multiplication: \(    (A \otimes B) x=\gamma\left(B \eta_{b_2 \times a_2}(x) A^{\top}\right)\), where vec is the vectorization operator, and T is the transpose operator.
             <br>
             <div style="border: 1px solid black; padding: 1px 10px; margin: 4px auto; display: table;">
