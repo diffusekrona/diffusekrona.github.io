@@ -1,4 +1,4 @@
-function populateGallery(imageUrls, galleryId) {
+function populateGallery(imageUrls, fname, galleryId) {
     var gallery = document.getElementById(galleryId);
 
     imageUrls.forEach(function(image) {
@@ -6,7 +6,8 @@ function populateGallery(imageUrls, galleryId) {
         container.className = 'image-container';
         
         var img = document.createElement('img');
-        img.src = "./static/results/" + image;
+        img.src = "./static/" + fname + '/' + 'generated/' + image;
+        img.width = 224;
         container.appendChild(img);
 
         // Create a caption for each image
