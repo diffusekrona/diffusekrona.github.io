@@ -106,11 +106,43 @@
     margin-bottom: 0;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     font-style: italic;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+    transition: all 0.5s ease; /* Add transition for smooth effect */
+    max-width: 224px;
 }
+
+.caption:hover {
+    overflow: visible;
+    white-space: normal;
+    max-width: 100%; /* Allow the box to expand to full width on hover */
+}
+
 .scroll-box {
   height: 700px; /* Adjust as needed */
   overflow-y: auto;
 }
+
+table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
   </style>
 </head>
 <body>
@@ -178,7 +210,7 @@
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/diffusekrona/diffusekrona.github.io/" target="_blank"
+                    <a href="https://github.com/IBM/DiffuseKronA" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -242,7 +274,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Concise Overview</h2>
+        <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
             In the realm of subject-driven text-to-image (T2I) generative models, recent developments like DreamBooth and BLIP-Diffusion have led to impressive results yet encounter limitations due to their intensive fine-tuning demands and substantial parameter requirements. While the low-rank adaptation (LoRA) module within DreamBooth offers a reduction in trainable parameters, it introduces a pronounced sensitivity to hyperparameters, leading to a compromise between parameter efficiency and the quality of T2I personalized image synthesis. Addressing these constraints, we introduce DiffuseKronA, a novel Kronecker product-based adaptation module that not only significantly reduces the parameter count by up to <em>35%</em> and <em>99.947%</em> compared to LoRA-DreamBooth and the original DreamBooth, respectively, but also enhances the quality of image synthesis. Crucially, DiffuseKronA mitigates the issue of hyperparameter sensitivity, delivering consistent high-quality generations across a wide range of hyperparameters, thereby diminishing the necessity for extensive fine-tuning. Evaluated against diverse and complex input images and text prompts, DiffuseKronA consistently outperforms existing models, producing diverse images of higher quality with improved fidelity and a more accurate color distribution of objects, thus presenting a substantial advancement in the field of T2I generative modeling.
@@ -258,15 +290,13 @@
 <section class="section hero">
   <div class="container is-max-desktop">
     <div class="section-title has-text-centered is-centered">
-      <h2 class="title is-3">From Text to Pixels: The Journey of an Efficient Diffusion Model</h2><br>
+      <h2 class="title is-3">Generating your dream images from text</h2><br>
     </div>
     <div class="columns is-centered has-text-centered">
       <div class="column  has-text-centered">
           <img id="network" src="static/images/model_dig.png" style="max-width: 100%;"/>
           <div class="content has-text-justified">
-            The main idea of DiffuseKronA is to use the Kronecker product, a matrix multiplication method that captures pairwise interactions between elements of two matrices, to decompose the weight matrices of the attention layers in the UNet model.
-            Kronecker Product is a matrix multiplication method that captures structured relationships and pairwise interactions between elements of two matrices, offering a higher-rank approximation with less parameter count and greater flexibility.
-            Kronecker Adapter replaces the low-rank decomposition in LoRA with the Kronecker product, such that \(W_{\text{pre-trained}}+\Delta W = W_{\text{pre-trained}} + (A \otimes B)\), where A and B are the Kronecker factors, and ⊗ denotes the Kronecker product.
+            The main idea of DiffuseKronA is to leverage the Kronecker product to decompose the weight matrices of the attention layers in the UNet model. Kronecker Product is a matrix multiplication method, that captures structured relationships and pairwise interactions between elements of two matrices. In contrast to the low-rank decomposition in LoRA, the Kronecker Adapter in DiffuseKronA offers a higher-rank approximation with less parameter count and greater flexibility, such that \(W_{\text{pre-trained}}+\Delta W = W_{\text{pre-trained}} + (A \otimes B)\), where A and B are the Kronecker factors, and ⊗ denotes the Kronecker product.
             Kronecker Adapter reduces the computational cost by using the following equivalent matrix-vector multiplication: \(    (A \otimes B) x=\gamma\left(B \eta_{b_2 \times a_2}(x) A^{\top}\right)\), where vec is the vectorization operator, and T is the transpose operator.
             <br>
             <div style="border: 1px solid black; padding: 1px 10px; margin: 4px auto; display: table;">
@@ -297,13 +327,13 @@
 
 <div class="scroll-box">
       <div class="dataset">
-        <img src="./static/results/accordion.png">
-        <img src="./static/results/accordion.png">
-        <img src="./static/results/accordion.png">
-        <img src="./static/results/accordion.png">
+        <img src="./static/vase/input/1.png" style="width: 224px;">
+        <img src="./static/vase/input/2.png" style="width: 224px;">
+        <img src="./static/vase/input/3.png" style="width: 224px;">
+        <img src="./static/vase/input/4.png" style="width: 224px;">
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <p class="caption" style="width: 20%;">Your caption goes here</p>
+        <p class="caption" style="width: 20%;">A [V] Vase</p>
       </div>
     
     <div id="gallery" class="gallery2">
@@ -313,17 +343,17 @@
     <script src="./static/js/gallery.js"></script>
 
     <script>
-      var images = ["accordion.png", "accordion.png", "accordion.png", "accordion.png", "accordion.png", "accordion.png","accordion.png","accordion.png"];
-      populateGallery(images, 'gallery');
+      var images = ['a [V] vase in front of Eiffel Tower.png', 'a [V] transparent vase with milk inside.png', 'a [V] vase buried in sand.png', 'a [V] vase floating on water.png', 'a [V] vase in beach.png', 'a [V] vase in cobblestone street.png', 'a [V] vase in snow.png', 'a [V] vase of green colour.png', 'A [V] vase on a road in city.png', 'a [V] vase with autumn leaves inside.png', 'a [V] vase with mountains in background.png', 'two [V] vases on a table.png'];
+      populateGallery(images,'vase','gallery');
     </script> 
 
 <hr class="divider">
 
 <div class="dataset">
-  <img src="./static/results/accordion.png">
-  <img src="./static/results/accordion.png">
-  <img src="./static/results/accordion.png">
-  <img src="./static/results/accordion.png">
+  <img src="./static/results/accordion.png" style="width: 224px;">
+  <img src="./static/results/accordion.png" style="width: 224px;">
+  <img src="./static/results/accordion.png" style="width: 224px;">
+  <img src="./static/results/accordion.png" style="width: 224px;">
 </div>
 <div style="display: flex; flex-direction: column; align-items: center;">
   <p class="caption" style="width: 20%;">Your caption goes here</p>
@@ -481,55 +511,76 @@ populateGallery(images, 'gallery2');
 <section class="section hero">  
   <div class="container is-max-desktop">
     <div class="section-title has-text-centered is-centered">
-      <h2 class="title is-3">Influence of Primitive Counts</h2>
-
-        
-        <div class="captioned_video">
-          <div class="inner_gallery2">
-            <img class="gallery" src="static/images/stroke_ablation.png" alt="stroke" style="width: 100%;"/>
-          </div>  
-
-        <div class="content has-text-justified">
-        Exploring the impact of varying primitive counts for each type within selected patches on sketch outcomes with diverse text prompts in CLIPDrawX.
-      
-        <ul style="margin-top: 0;">
-          <li>Few primitives yield abstract sketches (rows 1-2).</li>
-          <li>Optimal detail emerges with 3-4 primitives (rows 3-4).</li>
-          <li>Excessive counts (row 5) complicate optimization, hindering synthesis.</li>
-        </ul>
-
-        The study recommends deploying 3 primitives per type for efficient synthesis, balancing complexity and resource utilization.
+      <h2 class="title is-3">How efficient is DiffuseKronA</h2>
+      <div class="content has-text-justified">
+        Owing to the intricate structure of the Kronecker adapter, it conducts a harmonious reduction in parameters along with the generation of high-fidelity images, a virtuoso performance that LoRA layers can only envy.
+        The number of trainable parameters, as depicted in the table below, clearly indicates this. DiffuseKronA is \(\sim 35\%\) more parameter efficient as compared to LoRA-DreamBooth.
+Furthermore, a reduced number of parameters results in a smaller fine-tuning module size, consequently lowering the overall storage requirements.
       </div>
-      </div>
+      <table style="caption-side: bottom;">
+        <caption>Comparison of LoRA-DreamBooth v.s. DiffuseKronA.</caption>
+        <thead>
+            <tr>
+                <th>Backbone</th>
+                <th>Model</th>
+                <th>Train. Time</th>
+                <th># Param</th>
+                <th>Model size</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2" style="text-align: center; vertical-align: middle;">SDXL</td>
+                <td>DiffuseKronA</td>
+                <td>~ 40 min.</td>
+                <td>3.8 M</td>
+                <td>14.95 MB</td>
+            </tr>
+            <tr>
+                <td>LoRA-DreamBooth</td>
+                <td>~ 38 min.</td>
+                <td>5.8 M</td>
+                <td>22.32 MB</td>
+            </tr>
+            <tr>
+                <td rowspan="2" style="text-align: center; vertical-align: middle;">SD</td>
+                <td>DiffuseKronA</td>
+                <td>~ 5.52 min.</td>
+                <td>0.52 M</td>
+                <td>2.1MB</td>
+            </tr>
+            <tr>
+                <td>LoRA-Dreambooth</td>
+                <td>~ 5.3 min.</td>
+                <td>1.09 M</td>
+                <td>4.3MB</td>
+            </tr>
+        </tbody>
+    </table>
     </div>
   </div>
 </section>
 
 <hr class="divider">
 
+
+
 <section class="section hero">  
   <div class="container is-max-desktop">
     <div class="section-title has-text-centered is-centered">
       <h2 class="title is-3">State-of-the-art Comparison</h2>
       <div class="content has-text-justified">
-      Our CLIPDrawX model is compared with three related methods, including \(\textbf{CLIPDraw}\), which synthesizes CLIP-guided text-to-sketches by optimizing Bezier curves; \(\textbf{BigGAN}\), utilizing a pre-trained BigGAN generator for image production, and \(\textbf{VectorFusion}\), employing a text-conditioned diffusion model for vector sketch creation. We maintain the original settings of all these models to ensure a fair comparison. 
-      As demonstrated below, our CLIPDrawX produces sketches that are noticeably cleaner than those from CLIPDraw, likely due to our method's use of primitive-level dropout and the initialization of primitives at reduced opacity. 
-      The images from BigGAN often lack proper details and appropriate semantics, and the vector sketches from VectorFusion tend to be overly abstract and detail-deficient. 
-      In contrast, our CLIPDrawX consistently delivers clean sketches with accurate details and semantics. 
-      The reduced noise in our sketches is attributed to the minimized control points, learnable opacity for primitives, and primitive-level dropout, thus reducing the need for manual intervention and parameter adjustments. 
-       </div><br>
-
-        
+        We compare DiffuseKronA with four related methods, including \(\textbf{DreamBooth}\), \(\textbf{LoRA-DreamBooth}\), \(\textbf{\(\textbf{}\)}\), \(\textbf{SVDiff}\) and \(\textbf{SVDiff-LoRA}\). We maintain the original settings of all these methods to ensure a fair comparison. As shownbelow, our DiffuseKronA generates images that are highly aligned to the input images and constantly incorporates features mentioned in the input text prompt. The better fidelity and in-depth understanding of the input text prompts are attributed to the structure-preserving ability and better expressiveness of Kronecker product-based adaption. On the other hand, the images generated by LoRA-DreamBooth often require extensive fine-tuning to achieve the desired results. Methods like custom diffusion take more parameters to fine-tune the model.
+      </div>
         <div class="captioned_video">
           <div class="inner_gallery2">
             <img class="gallery" src="static/images/comparison.png" alt="comp" style="width: 100%;"/>
           </div>  
-
-
+          
       </div>
-      <div class="more-results">
+      <!-- <div class="more-results">
         <p class="more-results-text">For more results, please visit <a href="SOTA.html", target="_blank">SOTA Comparison!</a></p><br>
-      </div> 
+      </div>  -->
     </div>
   </div>
 </section>
@@ -571,11 +622,11 @@ populateGallery(images, 'gallery2');
     <button class="copy-button">Copy</button>
     <h2 class="title">BibTeX</h2>
     <pre><code id="bibtex">
-      @misc{mathur2023clipdrawx,
-        title={CLIPDrawX: Primitive-based Explanations for Text Guided Sketch Synthesis}, 
-        author={Nityanand Mathur and Shyam Marjit and Abhra Chaudhuri and Anjan Dutta},
+      @misc{marjit2023diffusekrona,
+        title={DiffuseKronA: A Parameter Efficient Fine-tuning Method for Personalized Diffusion Model}, 
+        author={Shyam Marjit and Harshit Singh and Nityanand Mathur and Sayak Paul and Chia-Mu Yu and Pin-Yu Chen},
         year={2023},
-        eprint={2312.02345},
+        eprint={},
         archivePrefix={arXiv},
         primaryClass={cs.CV}
       }
