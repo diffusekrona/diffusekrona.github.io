@@ -40,91 +40,6 @@
   <script src="static/js/index.js"></script>
 
   <style>
-    .gallery2 {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        overflow-x: auto;
-        white-space: nowrap;
-        border: 2px solid #000;
-        border-radius: 5px;
-        margin: 20px;
-        padding: 10px;
-    }
-    .gallery2 .image-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 0 5px;
-    }
-        .gallery2 img {
-            margin: 0 5px;
-            border: 2px solid #000;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        }
-
-        ::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1; 
-    }
-    
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #888; 
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #555; 
-    }
-
-  .dataset {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-}
-
-.dataset img {
-    margin: 0 5px;
-    border: 2px solid #000;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-.caption {
-    text-align: center;
-    border: 2px solid #000;
-    border-radius: 5px;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 0;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    font-style: italic;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    position: relative;
-    transition: all 0.5s ease; /* Add transition for smooth effect */
-    max-width: 224px;
-}
-
-.caption:hover {
-    overflow: visible;
-    white-space: normal;
-    max-width: 100%; /* Allow the box to expand to full width on hover */
-}
-
-.scroll-box {
-  height: 700px; /* Adjust as needed */
-  overflow-y: auto;
-}
-
 table {
         border-collapse: collapse;
         width: 100%;
@@ -143,6 +58,15 @@ table {
         background-color: #4CAF50;
         color: white;
     }
+
+    ul.checkmark {
+    list-style-type: none;
+}
+
+ul.checkmark li::before {
+    content: "✅";
+    margin-right: 10px;
+}
   </style>
 </head>
 <body>
@@ -290,28 +214,29 @@ table {
 <section class="section hero">
   <div class="container is-max-desktop">
     <div class="section-title has-text-centered is-centered">
-      <h2 class="title is-3">Generating your dream images from text</h2><br>
+      <h2 class="title is-3">From Text to your dream images: The overview of an Efficient Diffusion Model</h2><br>
     </div>
     <div class="columns is-centered has-text-centered">
       <div class="column  has-text-centered">
           <img id="network" src="static/images/model_dig.png" style="max-width: 100%;"/>
           <div class="content has-text-justified">
-            The main idea of DiffuseKronA is to leverage the Kronecker product to decompose the weight matrices of the attention layers in the UNet model. Kronecker Product is a matrix multiplication method, that captures structured relationships and pairwise interactions between elements of two matrices. In contrast to the low-rank decomposition in LoRA, the Kronecker Adapter in DiffuseKronA offers a higher-rank approximation with less parameter count and greater flexibility, such that \(W_{\text{pre-trained}}+\Delta W = W_{\text{pre-trained}} + (A \otimes B)\), where A and B are the Kronecker factors, and ⊗ denotes the Kronecker product.
+            The main idea of DiffuseKronA is to leverage the Kronecker product to decompose the weight matrices of the attention layers in the UNet model. Kronecker Product is a matrix multiplication method, that captures structured relationships and pairwise interactions between elements of two matrices as follows            
+            <div style="padding: 1px 10px; margin: 4px auto; display: table;">
+               $$    A \otimes B=\left[\begin{array}{ccc}
+              a_{1,1} B & \cdots & a_{1,a_2} B \\
+              \vdots & \ddots & \vdots \\
+              a_{a_1, 1} B & \cdots & a_{a_1, a_2} B
+              \end{array}\right]$$
+            </div> In contrast to the low-rank decomposition in LoRA, the Kronecker Adapter in DiffuseKronA offers a higher-rank approximation with less parameter count and greater flexibility, such that \(W_{\text{pre-trained}}+\Delta W = W_{\text{pre-trained}} + (A \otimes B)\), where A and B are the Kronecker factors, and ⊗ denotes the Kronecker product.
             Kronecker Adapter reduces the computational cost by using the following equivalent matrix-vector multiplication: \(    (A \otimes B) x=\gamma\left(B \eta_{b_2 \times a_2}(x) A^{\top}\right)\), where \(\eta\) is the vectorization operator, and T is the transpose operator.
             <br>
             <div style="border: 1px solid black; padding: 1px 10px; margin: 4px auto; display: table;">
               $$W_{\text{fine-tuned}}=W_{\text{pre-trained}}+\Delta W$$
             </div>
             <div style="border: 1px solid black; padding: 1px 10px; margin: 4px auto; display: table;">
-              $$\Delta W^{U} =A^U \otimes \mathbf{B}^U; \small{U \in {K,Q,V,O}}$$
+              $$\Delta W^{U} =A^U \otimes {B}^U; \small{U \in {K,Q,V,O}}$$
             </div>
-            <div style="border: 1px solid black; padding: 1px 10px; margin: 4px auto; display: table;">
-              $$    A \otimes B=\left[\begin{array}{ccc}
-              a_{1,1} B & \cdots & a_{1,a_2} B \\
-              \vdots & \ddots & \vdots \\
-              a_{a_1, 1} B & \cdots & a_{a_1, a_2} B
-              \end{array}\right]$$
-            </div>
+
           </div>
       </div>      
   </div>
@@ -324,51 +249,12 @@ table {
     <div class="section-title has-text-centered is-centered">
       <h2 class="title is-3">Unraveling Textual Descriptions into Artistic Creations</h2><br>
     </div>
-
-<div class="scroll-box">
-      <div class="dataset">
-        <img src="./static/vase/input/1.png" style="width: 224px;">
-        <img src="./static/vase/input/2.png" style="width: 224px;">
-        <img src="./static/vase/input/3.png" style="width: 224px;">
-        <img src="./static/vase/input/4.png" style="width: 224px;">
-      </div>
-      <div style="display: flex; flex-direction: column; align-items: center;">
-        <p class="caption" style="width: 20%;">A [V] Vase</p>
-      </div>
-    
-    <div id="gallery" class="gallery2">
-      <!-- Images will be inserted here by JavaScript -->
+    <div class="captioned_video">
+      <div class="inner_gallery2">
+        <img class="gallery" src="static/images/first_page-1.png" style="width: 100%;"/>
+      </div>  
     </div>
 
-    <script src="./static/js/gallery.js"></script>
-
-    <script>
-      var images = ['a [V] vase in front of Eiffel Tower.png', 'a [V] transparent vase with milk inside.png', 'a [V] vase buried in sand.png', 'a [V] vase floating on water.png', 'a [V] vase in beach.png', 'a [V] vase in cobblestone street.png', 'a [V] vase in snow.png', 'a [V] vase of green colour.png', 'A [V] vase on a road in city.png', 'a [V] vase with autumn leaves inside.png', 'a [V] vase with mountains in background.png', 'two [V] vases on a table.png'];
-      populateGallery(images,'vase','gallery');
-    </script> 
-
-<hr class="divider">
-
-<div class="dataset">
-  <img src="./static/results/accordion.png" style="width: 224px;">
-  <img src="./static/results/accordion.png" style="width: 224px;">
-  <img src="./static/results/accordion.png" style="width: 224px;">
-  <img src="./static/results/accordion.png" style="width: 224px;">
-</div>
-<div style="display: flex; flex-direction: column; align-items: center;">
-  <p class="caption" style="width: 20%;">Your caption goes here</p>
-</div>
-
-<div id="gallery2" class="gallery2">
-<!-- Images will be inserted here by JavaScript -->
-</div>
-
-<script src="./static/js/gallery.js"></script>
-
-<script>
-var images = ["accordion.png", "accordion.png", "accordion.png", "accordion.png", "accordion.png", "accordion.png","accordion.png","accordion.png"];
-populateGallery(images, 'gallery2');
-</script> 
 </div>
     <br>
       <div class="more-results">
@@ -383,130 +269,22 @@ populateGallery(images, 'gallery2');
 <section class="section hero">
   <div class="container is-max-desktop">
     <div class="section-title has-text-centered is-centered">
-      <h2 class="title is-3">From Doodles to Details: The Explainability of Sketch Synthesis</h2>
-    </div>
-      <div class="content has-text-justified"></div>
-      As shown in the figure below, we demonstrate that our CLIPDrawX model offers the ability to synthesize explainable sketches whose strokes are primitive shapes like circles (second row from the top), straight lines (third row) and half circles (fourth row). These individual strokes can be tracked through their evolution in successive iterations of the optimization process. Notably, the model intuitively represents different parts of the synthesized sketch with appropriate primitive shapes. For example, the chassis and handlebars of the synthesized <em>motorcycle</em> are rendered with straight lines, while the wheels are depicted using circles and semicircles.<br>
-      <br>Our model skilfully captures the dynamics of shape or scene evolution, displaying varying levels of flexibility based on the degree of freedom, which is linked to the number of control points in a shape.
-      In the <em>farm</em> example, it assigns straight lines to simpler structures like a house's roof and walls, while more complex elements like grass and crops are made with semi-circles, providing more flexibility. Even more intricate structures, like trees, are rendered using circles, the most flexible shape, illustrating the model's skill in using various primitives for different levels of complexity. This strategic use of shapes enhances the model's ability to create detailed, nuanced sketches.
-    </div><br>
-    <div class="container is-max-desktop is-centered has-text-centered">
-
-        
-        <div class="captioned_video">
-          <div class="inner_gallery2">
-            <img class="gallery img-border" src="static/explain/motorcycle.png" alt="motorcycle" style="max-width: 100%;"/>
-          </div>  
-          <!-- <h6 class="caption">“A standing motorcycle”</h6> -->
-          “A standing <mark>motorcycle</mark>”
-        </div>
-
-        <div class="captioned_video">
-          <div class="inner_gallery2">
-            <img class="gallery img-border" src="static/explain/farm.png" alt="farm" style="max-width: 100%;"/>
-          </div>  
-          “A peaceful afternoon at the <mark>farm</mark> sketch”
-        </div>
-
-
-      <div class="more-results">
-        <p class="more-results-text">For more results, please visit <a href="explain.html", target="_blank">Explainable Sketch Synthesis!</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="section-title has-text-centered is-centered">
-      <h2 class="title is-3">Clearing the Clutter: Patch-based Initialization</h2>
-    </div>
-    <div class="hero-body">
-      <video poster="" id="tree" autoplay controls loop muted height="100%" style="max-width: 100%;">
-        <!-- Your video here -->
-        <source src="static/images/Patchification.mp4"
-        type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <div class="content has-text-justified">
-      Placing different primitives at a single location is problematic, as it may result in clutter due to high point density, leading to uneven primitive distribution and messy sketches. To address this, our CLIPDrawX introduces primitives in fixed ranges or <em>patches</em>, representing all points within, rather than at precise attention map locations. It divides a <mark>\(224 \times 224\)</mark> canvas into patches of <mark>\(32 \times 32\)</mark>. 
-        </div>
-    </h2>
-    </div>
-  </div>
-</section>
-
-
-<hr class="divider">
-
-<section class="section hero">
-  <div class="container is-max-desktop">
-    <div class="section-title has-text-centered is-centered">
-      <h2 class="title is-3">Fundamental Finesse: The Debut of Primitive-level Dropout</h2>
+      <h2 class="title is-3">Effect of Training Iterations</h2>
       <div class="content has-text-justified">
-      Primitive-level dropout enhances the utilization of primitive shapes. 
-
-      It facilitates the optimization process in a way that forces every primitive to independently encode some specific concept in the sketch. As a result, the number of noisy strokes in the sketch, that do not contribute towards depicting anything meaningful, is reduced.
-      
-      Moreover, PLD expedites convergence by reducing the number of steps required for structure creation, thanks to its ability to promptly detect relevant strokes.    <div class="container is-max-desktop is-centered has-text-centered">
+        In T2I personalization, the timely attainment of satisfactory results within a specific number of iterations is crucial. This not only reduces the overall training time but also helps prevent overfitting to the training images, ensuring efficiency and higher fidelity in image generation. With SDXL, we successfully generate desired-fidelity images within 500 iterations, if the input images and prompt complexity are not very high. However, in cases where the input image complexity or the prompt complexity requires additional refinement, it is better to extend the training up to 1000 iterations as depicted below.
       </div>
-        <br>
         
         <div class="captioned_video">
-            <img class="gallery" src="static/images/dropout_ablation.jpg" alt="dropout" style="width: 100%;"/>
+            <img class="gallery" src="static/images/cat_.png" style="width: 100%;"/>
         </div>
 
     </div>
   </div>
 </section>
 
-<hr class="divider">
-<section class="section hero">
-  <div class="container is-max-desktop">
-    <div class="section-title has-text-centered is-centered">
-      <h2 class="title is-3">Gentle Strokes: Sketching with Diminished Opacity</h2>
-      <div class="content has-text-justified">
-      In traditional human sketching, artists often begin with a light outline or faint layout, serving as a foundation for the artwork. This initial phase sets the broader structure and composition. As the artwork advances, artists intensify strokes, especially focusing on crucial elements to make them prominent, ensuring each stroke adds value to the overall piece. Drawing a parallel to the digital realm, in CLIPDrawX, we have curated a similar methodology. Here, the initialization of primitive shapes starts with a low opacity value, denoted as \(\alpha\). This can be likened to the faint layout artists create. As the system begins its optimization process, based on relevance and significance, the opacity of certain primitives is incrementally increased. This mirrors the artist's method of iteratively intensifying strokes that are deemed crucial to the sketch's integrity.
-      </div>
-      <br>
-
-        
-        <div class="captioned_video">
-            <img class="gallery" src="static/images/motorcycle.png" alt="opacity" style="width: 100%;"/>
-          </div>
-          “A standing <mark>motorcycle</mark>”
-
-        <div class="captioned_video">
-            <img class="gallery" src="static/images/missile.png" alt="opacity" style="width: 100%;"/>
-          </div>
-          “A <mark>missile</mark> ready to launch”
-
-
-      </div>
-    </div>
-  </div>
-</section>
 
 <hr class="divider">
 
-<section class="section hero">  
-  <div class="container is-max-desktop">
-    <div class="section-title has-text-centered is-centered">
-      <h2 class="title is-3">Shades of Creativity: Exploring Sketch Variations</h2>
-
-        
-        <div class="captioned_video">
-          <div class="inner_gallery2">
-            <img class="gallery" src="static/images/variations.png" alt="var"/>
-          </div>  
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
 
 <section class="section hero">  
   <div class="container is-max-desktop">
@@ -589,10 +367,13 @@ Furthermore, a reduced number of parameters results in a smaller fine-tuning mod
 <section class="section hero">  
   <div class="container is-max-desktop">
     <div class="section-title has-text-centered is-centered">
-      <h2 class="title is-3">Final takeaways</h2><br>
+      <h2 class="title is-3">Final takeaways</h2>
       <div class="content has-text-justified">
-        We proposed a new parameter-efficient adaption module, DiffuseKronA, to enhance text-to-image personalized diffusion models, aiming to achieve high-quality image generation with improved parameter efficiency. Leveraging the Kronecker product's capacity to capture structured relationships in weight matrices, DiffuseKronA produces images closely aligned with input text prompts and training images, outperforming LoRA-DreamBooth in visual quality, text alignment, fidelity, parameter efficiency, and stability.
-        Our method thus provides a new and efficient tool for advancing text-to-image personalized image generation tasks.
+        <ul class="checkmark">
+          <li>High-quality image generation with improved parameter-efficient text-to-image personalized diffusion model.</li>
+          <li>Leverages the advantages of the Kronecker product to capture structured relationships in attention weight matrices.</li>
+          <li>Outperforms LoRA-DreamBooth in terms of visual quality, text alignment, fidelity, parameter efficiency, and stability</li>
+        </ul>
       </div>
     </div>
   </div>
