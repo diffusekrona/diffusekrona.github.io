@@ -1,4 +1,4 @@
-function populateGallery(imageUrls, fname, galleryId) {
+function populateGallery(imageUrls, krona_or_lora ,fname, galleryId) {
     var gallery = document.getElementById(galleryId);
 
     imageUrls.forEach(function(image) {
@@ -6,7 +6,7 @@ function populateGallery(imageUrls, fname, galleryId) {
         container.className = 'image-container';
         
         var img = document.createElement('img');
-        img.src = "./static/" + fname + '/' + 'generated/' + image;
+        img.src = "./static/" + krona_or_lora + '/' + fname + '/' + 'generated/' + image;
         img.width = 224;
         container.appendChild(img);
 

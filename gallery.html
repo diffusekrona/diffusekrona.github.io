@@ -32,6 +32,7 @@
         flex-direction: column;
         align-items: center;
         margin: 0 5px;
+        padding-top: 0;
     }
         .gallery img {
             margin: 0 5px;
@@ -75,12 +76,13 @@
 
 .caption {
     text-align: center;
-    border: 2px solid #000;
-    border-radius: 5px;
+    /* border: 2px solid #000;
+    border-radius: 5px; */
     padding: 10px;
+    padding-bottom: 0;
     margin-top: 2px;
     margin-bottom: 0;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    /* box-shadow: 0 0 10px rgba(0,0,0,0.5); */
     font-style: italic;
     width: 210px;
 }
@@ -117,10 +119,10 @@
     <h1>Gallery</h1>
 
       <div class="dataset">
-          <img src="./static/vase/input/1.png" style="width: 224px;">
-          <img src="./static/vase/input/2.png" style="width: 224px;">
-          <img src="./static/vase/input/3.png" style="width: 224px;">
-          <img src="./static/vase/input/4.png" style="width: 224px;">
+          <img src="./static/krona/vase/input/1.png" style="width: 180px;">
+          <img src="./static/krona/vase/input/2.png" style="width: 180px;">
+          <img src="./static/krona/vase/input/3.png" style="width: 180px;">
+          <img src="./static/krona/vase/input/4.png" style="width: 180px;">
       </div>
       <p class="caption" style="border: none; box-shadow: none;">A [V] Vase</p>
       
@@ -132,7 +134,7 @@
 
       <script>
         var images = ['a [V] transparent vase with milk inside.png', 'a [V] vase buried in sand.png', 'a [V] vase floating on water.png', 'a [V] vase in beach.png', 'a [V] vase in cobblestone street.png', 'a [V] vase in front of Eiffel Tower.png', 'a [V] vase in snow.png', 'a [V] vase of green colour.png', 'A [V] vase on a road in city.png', 'a [V] vase with autumn leaves inside.png', 'a [V] vase with mountains in background.png', 'two [V] vases on a table.png'];
-        populateGallery(images, 'vase','gallery');
+        populateGallery(images, 'krona' ,'vase','gallery');
       </script>
 
     <hr class="divider">
