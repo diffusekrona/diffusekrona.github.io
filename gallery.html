@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap", rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./static/css/index.css">
+    <style>
+      * {
+    font-family: 'Hedvig Letters Serif', serif;
+    }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Hedvig Letters Serif', serif;
+        }
+        .gallery {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-x: auto;
+        white-space: nowrap;
+        border: 2px solid #000;
+        border-radius: 5px;
+        margin: 20px;
+        padding: 10px;
+        max-width: 75%;
+    }
+    .gallery .image-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 5px;
+        padding-top: 0;
+    }
+        .gallery img {
+            margin: 0 5px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+    }
+
+  .dataset {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.dataset img {
+    margin: 0 5px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.caption {
+    text-align: center;
+    /* border: 2px solid #000;
+    border-radius: 5px; */
+    padding: 10px;
+    padding-bottom: 0;
+    margin-top: 2px;
+    margin-bottom: 0;
+    /* box-shadow: 0 0 10px rgba(0,0,0,0.5); */
+    font-style: italic;
+    width: 210px;
+}
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Hedvig Letters Serif', serif;
+}
+
+.diffuse {
+        font-size: 2.5em; /* Adjust this value to make the text larger or smaller */
+        text-align: justify;
+        max-width: 65%;
+    }
+  
+    hr.divider {
+    border: none;
+    border-top: 1px solid #b9b6b6; /* Change color as needed */
+    color: #fff;
+    background-color: #fff;
+    height: 1px;
+    width: 100%;
+    padding-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+  <h1 class="diffuse">DiffuseKronA: A Parameter Efficient Fine-tuning Method for Personalized Diffusion Model</h1>
+    <h1>Gallery</h1>
+
+      <div class="dataset">
+          <img src="./static/krona/vase/input/1.png" style="width: 180px;">
+          <img src="./static/krona/vase/input/2.png" style="width: 180px;">
+          <img src="./static/krona/vase/input/3.png" style="width: 180px;">
+          <img src="./static/krona/vase/input/4.png" style="width: 180px;">
+      </div>
+      <p class="caption" style="border: none; box-shadow: none;">A [V] Vase</p>
+      
+      <div id="gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+      </div>
+
+      <script src="./static/js/gallery.js"></script>
+
+      <script>
+        var images = ['a [V] transparent vase with milk inside.png', 'a [V] vase buried in sand.png', 'a [V] vase floating on water.png', 'a [V] vase in beach.png', 'a [V] vase in cobblestone street.png', 'a [V] vase in front of Eiffel Tower.png', 'a [V] vase in snow.png', 'a [V] vase of green colour.png', 'A [V] vase on a road in city.png', 'a [V] vase with autumn leaves inside.png', 'a [V] vase with mountains in background.png', 'two [V] vases on a table.png'];
+        populateGallery(images, 'krona' ,'vase','gallery');
+      </script>
+
+    <hr class="divider">
+
+</body>
+</html>

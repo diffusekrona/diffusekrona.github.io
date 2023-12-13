@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <meta name="description" content="CDx">
+  <meta property="og:title" content="DiffuseKronA"/>
+  <meta property="og:description" content="A Parameter Efficient Fine-tuning Method for Personalized
+  Diffusion Models"/>
+  <meta property="og:url" content="diffusekrona.github.io"/>
+
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="DiffuseKronA, Personalized Text-to-image generation, Diffusion, LDM, Stable Diffusion, SDXL, Kronecker Product, LoRA">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <link rel="icon" type="image/x-icon" href="static/images/CDx-Logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+    <title>DiffuseKronA: A Parameter Efficient Fine-tuning Method for Personalized
+      Diffusion Models</title>
+    
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <style>
+table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    ul.checkmark {
+    list-style-type: none;
+}
+
+ul.checkmark li::before {
+    content: "✅";
+    margin-right: 10px;
+}
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">DiffuseKronA: A Parameter Efficient Fine-tuning Method for Personalized
+              Diffusion Model</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://github.com/shyammarjit" target="_blank">Shyam Marjit</a><sup>*,1</sup> ,</span>
+                <span class="author-block">
+
+                  <a href="https://iamdata.tech/" target="_blank">Harshit Singh</a><sup>*,1</sup> ,</span>
+                  <span class="author-block">
+
+                <a href="https://nityanandmathur.live" target="_blank">Nityanand Mathur</a><sup>*,1</sup> ,</span>
+                <span class="author-block">
+
+                    <a href="https://sayak.dev/" target="_blank">Sayak Paul</a><sup>2</sup> ,
+                  </span>
+                  <span class="author-block">
+                    <a href="http://chiamuyu.weebly.com/" target="_blank">Chia-Mu Yu</a><sup>3</sup> ,
+                  </span>
+
+                  <span class="author-block">
+                    <a href="https://sites.google.com/site/pinyuchenpage/home?authuser=0" target="_blank">Pin-Yu Chen</a><sup>4</sup>
+                  </span>
+
+                  </div>  
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>1</sup>IIIT Guwahati, <sup>2</sup>Hugging Face, <sup>3</sup>National Yang Ming Chiao Tung University,
+                     <sup>4</sup>IBM Research </span>
+                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+                  </div>
+                  
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/abs/2312.02345" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper(soon)</span>
+                      </a>
+                    </span>
+
+                    <!-- Supplementary PDF link
+                    <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span> -->
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/IBM/DiffuseKronA" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code(Soon)</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2312.02345" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+
+                <span class="link-block">
+                  <a href="gallery.html" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fa fa-play"></i>
+                  </span>
+                  <span>Gallery</span>
+                </a>
+              </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls loop muted height="100%" style="max-width: 100%;">
+        <!-- Your video here -->
+        <source src="static/images/DiffuseKronA.mp4"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <div class="content has-text-justified">
+          Our method, DiffuseKronA, achieves superior image quality and accurate text-image correspondence across diverse input images
+          and prompts, all the while upholding exceptional parameter efficiency. In this context, \([V]\) denotes a unique token used for fine-tuning a
+          specific subject in the text-to-image diffusion model.
+        </div>
+      </h2> 
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+<hr class="divider" />
+<!-- Paper abstract -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In the realm of subject-driven text-to-image (T2I) generative models, recent developments like DreamBooth and BLIP-Diffusion have led to impressive results yet encounter limitations due to their intensive fine-tuning demands and substantial parameter requirements. While the low-rank adaptation (LoRA) module within DreamBooth offers a reduction in trainable parameters, it introduces a pronounced sensitivity to hyperparameters, leading to a compromise between parameter efficiency and the quality of T2I personalized image synthesis. Addressing these constraints, we introduce DiffuseKronA, a novel Kronecker product-based adaptation module that not only significantly reduces the parameter count by up to <em>35%</em> and <em>99.947%</em> compared to LoRA-DreamBooth and the original DreamBooth, respectively, but also enhances the quality of image synthesis. Crucially, DiffuseKronA mitigates the issue of hyperparameter sensitivity, delivering consistent high-quality generations across a wide range of hyperparameters, thereby diminishing the necessity for extensive fine-tuning. Evaluated against diverse and complex input images and text prompts, DiffuseKronA consistently outperforms existing models, producing diverse images of higher quality with improved fidelity and a more accurate color distribution of objects, thus presenting a substantial advancement in the field of T2I generative modeling.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<hr class="divider">
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="section-title has-text-centered is-centered">
+      <h2 class="title is-3">From Text to your dream images: The overview of an Efficient Diffusion Model</h2><br>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column  has-text-centered">
+          <img id="network" src="static/images/model_dig.png" style="max-width: 100%;"/>
+          <div class="content has-text-justified">
+            The main idea of DiffuseKronA is to leverage the Kronecker product to decompose the weight matrices of the attention layers in the UNet model. Kronecker Product is a matrix multiplication method, that captures structured relationships and pairwise interactions between elements of two matrices as follows            
+            <div style="padding: 1px 10px; margin: 4px auto; display: table;">
+               $$    A \otimes B=\left[\begin{array}{ccc}
+              a_{1,1} B & \cdots & a_{1,a_2} B \\
+              \vdots & \ddots & \vdots \\
+              a_{a_1, 1} B & \cdots & a_{a_1, a_2} B
+              \end{array}\right]$$
+            </div> In contrast to the low-rank decomposition in LoRA, the Kronecker Adapter in DiffuseKronA offers a higher-rank approximation with less parameter count and greater flexibility, such that \(W_{\text{pre-trained}}+\Delta W = W_{\text{pre-trained}} + (A \otimes B)\), where A and B are the Kronecker factors, and ⊗ denotes the Kronecker product.
+            Kronecker Adapter reduces the computational cost by using the following equivalent matrix-vector multiplication: \(    (A \otimes B) x=\gamma\left(B \eta_{b_2 \times a_2}(x) A^{\top}\right)\), where \(\eta\) is the vectorization operator, and T is the transpose operator.
+            <br>
+            <div style="border: 1px solid black; padding: 1px 10px; margin: 4px auto; display: table;">
+              $$W_{\text{fine-tuned}}=W_{\text{pre-trained}}+\Delta W$$
+            </div>
+            <div style="border: 1px solid black; padding: 1px 10px; margin: 4px auto; display: table;">
+              $$\Delta W^{U} =A^U \otimes {B}^U; \small{U \in {K,Q,V,O}}$$
+            </div>
+
+          </div>
+      </div>      
+  </div>
+  </section>
+
+<hr class="divider" />  
+
+<section class="section">
+  <div class="container is-widescreen">
+    <div class="section-title has-text-centered is-centered">
+      <h2 class="title is-3">Unraveling Textual Descriptions into Artistic Creations</h2><br>
+    </div>
+    <div class="captioned_video">
+      <div class="inner_gallery2">
+        <img class="gallery" src="static/images/first_page-1.png" style="width: 100%;"/>
+      </div>  
+    </div>
+
+</div>
+    <br>
+      <div class="more-results">
+        <p class="more-results-text">For more results, please visit <a href="gallery.html", target="_blank">gallery!</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="section-title has-text-centered is-centered">
+      <h2 class="title is-3">Effect of Training Iterations</h2>
+      <div class="content has-text-justified">
+        In T2I personalization, the timely attainment of satisfactory results within a specific number of iterations is crucial. This not only reduces the overall training time but also helps prevent overfitting to the training images, ensuring efficiency and higher fidelity in image generation. With SDXL, we successfully generate desired-fidelity images within 500 iterations, if the input images and prompt complexity are not very high. However, in cases where the input image complexity or the prompt complexity requires additional refinement, it is better to extend the training up to 1000 iterations as depicted below.
+      </div>
+        
+        <div class="captioned_video">
+            <img class="gallery" src="static/images/cat_.png" style="width: 100%;"/>
+        </div>
+
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="section-title has-text-centered is-centered">
+      <h2 class="title is-3">Effect of Size of Kronecker Factors</h2>
+      <div class="content has-text-justified">
+        The size of the Kronecker factors significantly influences the images generated by DiffuseKronA. Larger Kronecker factors tend to produce images with higher resolution and more detailing, while smaller Kronecker factors result in lower-resolution images with less detailing. Images generated with larger Kronecker factors tend to look more realistic, while those generated with smaller Kronecker factors appear more abstract. Varying the Kronecker factors can result in a wide range of images, from highly detailed and realistic to more abstract and lower resolution.
+        In the figure below when both a1 and a2 are set to relatively high values (8 and 64 respectively), the generated images are of very high fidelity and detail. The features of the dog and the house in the background are more defined and realistic with the house having a blue colour as mentioned in the prompt. When a1 is halved (4) while maintaining the same (64) results in images where the dog and the house are still quite detailed due to the high value of a2, but perhaps less so than in the previous case due to the smaller value of a1.
+However, when the factors are small \(\le\) 8, not only the generated images do not adhere to the prompt, but the number of trainable parameters increases drastically.  
+      </div>
+        
+        <div class="captioned_video">
+            <img class="gallery" src="static/images/dog_rank.png" style="width: 100%;"/>
+        </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="section-title has-text-centered is-centered">
+      <h2 class="title is-3">Effect of Learning Rate</h2>
+      <div class="content has-text-justified">
+        Our method produces consistent results across a wide range of learning rates. Here, we observed that the images generated for a learning rate closer to the optimal learning rate value \(6\times\mathrm{10}^{-4}\) generate similar images. However, learning rates exceeding \(1\times\mathrm{10}^{-3}\) contribute to model overfitting, resulting in high-fidelity images but with diminished emphasis on input text prompts. Conversely, learning rates below \(1\times\mathrm{10}^{-4}\) lead to lower fidelity in generated images, prioritizing input text prompts to a greater extent. 
+      </div>
+        
+        <div class="captioned_video">
+            <img class="gallery" src="static/images/stability.png" style="width: 100%;"/>
+        </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="section-title has-text-centered is-centered">
+      <h2 class="title is-3">Superior Fidelity and Colour Distribution</h2>
+      <div class="content has-text-justified">
+        Our approach consistently produces images of superior fidelity compared to LoRA-DreamBooth, as illustrated below. Notably, the \(\textit{clock}\) generated by our method faithfully reproduces the intricate details, such as the exact depiction of the numeral \(3\), mirroring the original image. In contrast, the output from LoRA-DreamBooth exhibits difficulties in achieving such high fidelity. Additionally, our method demonstrates improved color distribution in the generated images, a feature clearly evident in the \(\textit{RC Car}\) images in below. Moreover, it struggles to maintain fidelity to the numeral \(1\) on the chest of the sitting toy.  
+      </div>
+        
+        <div class="captioned_video">
+            <img class="gallery" src="static/images/fidelity.png" style="width: 100%;"/>
+        </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="section-title has-text-centered is-centered">
+      <h2 class="title is-3">Text Alignment</h2>
+      <div class="content has-text-justified">
+        Our method comprehends the intricacies and complexities of text prompts provided as input, producing images that align with the given text prompts, as depicted below.
+        The generated image of the \(\textit{character}\) in response to the prompt exemplifies the meticulous attention our method pays to detail. It elegantly captures the presence of a shop in the background, a bowl with noodles in front of the character, and accompanying soup bowls. In contrast, LoRA-DreamBooth struggles to generate an image that aligns seamlessly with the complex input prompt. Our method not only generates images that align with text but is also proficient in producing a diverse range of images for a given input.  
+      </div>
+        
+        <div class="captioned_video">
+            <img class="gallery" src="static/images/text_align.png" style="width: 100%;"/>
+        </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+
+<section class="section hero">  
+  <div class="container is-max-desktop">
+    <div class="section-title has-text-centered is-centered">
+      <h2 class="title is-3">How efficient is DiffuseKronA</h2>
+      <div class="content has-text-justified">
+        Owing to the intricate structure of the Kronecker adapter, it conducts a harmonious reduction in parameters along with the generation of high-fidelity images, a virtuoso performance that LoRA layers can only envy.
+        The number of trainable parameters, as depicted in the table below, clearly indicates this. DiffuseKronA is \(\sim 35\%\) more parameter efficient as compared to LoRA-DreamBooth.
+Furthermore, a reduced number of parameters results in a smaller fine-tuning module size, consequently lowering the overall storage requirements.
+      </div>
+      <table style="caption-side: bottom;">
+        <caption>Comparison of LoRA-DreamBooth v.s. DiffuseKronA.</caption>
+        <thead>
+            <tr>
+                <th>Backbone</th>
+                <th>Model</th>
+                <th>Train. Time</th>
+                <th># Param</th>
+                <th>Model size</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2" style="text-align: center; vertical-align: middle;">SDXL</td>
+                <td>DiffuseKronA</td>
+                <td>~ 40 min.</td>
+                <td>3.8 M</td>
+                <td>14.95 MB</td>
+            </tr>
+            <tr>
+                <td>LoRA-DreamBooth</td>
+                <td>~ 38 min.</td>
+                <td>5.8 M</td>
+                <td>22.32 MB</td>
+            </tr>
+            <tr>
+                <td rowspan="2" style="text-align: center; vertical-align: middle;">SD</td>
+                <td>DiffuseKronA</td>
+                <td>~ 5.52 min.</td>
+                <td>0.52 M</td>
+                <td>2.1MB</td>
+            </tr>
+            <tr>
+                <td>LoRA-Dreambooth</td>
+                <td>~ 5.3 min.</td>
+                <td>1.09 M</td>
+                <td>4.3MB</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+
+
+<section class="section hero">  
+  <div class="container is-max-desktop">
+    <div class="section-title has-text-centered is-centered">
+      <h2 class="title is-3">State-of-the-art Comparison</h2>
+      <div class="content has-text-justified">
+        We compare DiffuseKronA with four related methods, including \(\textbf{DreamBooth}\), \(\textbf{LoRA-DreamBooth}\), \(\textbf{\(\textbf{}\)}\), \(\textbf{SVDiff}\) and \(\textbf{SVDiff-LoRA}\). We maintain the original settings of all these methods to ensure a fair comparison. As shownbelow, our DiffuseKronA generates images that are highly aligned to the input images and constantly incorporates features mentioned in the input text prompt. The better fidelity and in-depth understanding of the input text prompts are attributed to the structure-preserving ability and better expressiveness of Kronecker product-based adaption. On the other hand, the images generated by LoRA-DreamBooth often require extensive fine-tuning to achieve the desired results. Methods like custom diffusion take more parameters to fine-tune the model.
+      </div>
+        <div class="captioned_video">
+          <div class="inner_gallery2">
+            <img class="gallery" src="static/images/comparison.png" alt="comp" style="width: 100%;"/>
+          </div>  
+          
+      </div>
+      <!-- <div class="more-results">
+        <p class="more-results-text">For more results, please visit <a href="SOTA.html", target="_blank">SOTA Comparison!</a></p><br>
+      </div>  -->
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+<section class="section hero">  
+  <div class="container is-max-desktop">
+    <div class="section-title has-text-centered is-centered">
+      <h2 class="title is-3">Final takeaways</h2>
+      <div class="content has-text-justified">
+        <ul class="checkmark">
+          <li>High-quality image generation with improved parameter-efficient text-to-image personalized diffusion model.</li>
+          <li>Leverages the advantages of the Kronecker product to capture structured relationships in attention weight matrices.</li>
+          <li>Outperforms LoRA-DreamBooth in terms of visual quality, text alignment, fidelity, parameter efficiency, and stability</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+
+<!-- Paper poster -->
+<!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Poster</h2>
+
+      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
+          </iframe>
+        
+      </div>
+    </div>
+  </section> -->
+<!--End paper poster -->
+
+
+<!--BibTex citation -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <button class="copy-button">Copy</button>
+    <h2 class="title">BibTeX</h2>
+    <pre><code id="bibtex">
+      @misc{marjit2023diffusekrona,
+        title={DiffuseKronA: A Parameter Efficient Fine-tuning Method for Personalized Diffusion Model}, 
+        author={Shyam Marjit and Harshit Singh and Nityanand Mathur and Sayak Paul and Chia-Mu Yu and Pin-Yu Chen},
+        year={2023},
+        eprint={},
+        archivePrefix={arXiv},
+        primaryClass={cs.CV}
+      }
+    </code></pre>
+  </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+           Page credits: <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+  </html>
