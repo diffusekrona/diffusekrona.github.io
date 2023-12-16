@@ -67,6 +67,11 @@ ul.checkmark li::before {
     content: "✅";
     margin-right: 10px;
 }
+
+section {
+        margin: 0; /* Adjust this value to change the space between sections */
+        padding: 0; /* Adjust this value to change the space within sections */
+    }
   </style>
 </head>
 <body>
@@ -184,6 +189,7 @@ ul.checkmark li::before {
 <!-- Image carousel -->
 <section class="hero is-small">
   <div class="hero-body">
+    <h2 class="title is-3" style="text-align: center;">Unraveling Textual Descriptions into Artistic Creations</h2>
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
@@ -206,9 +212,12 @@ ul.checkmark li::before {
   <p class="carousel-caption" style="width: 70%; margin-left: auto; margin-right: auto; text-align: justify;">
       Our method, DiffuseKronA, achieves superior image quality and accurate text-image correspondence across diverse input images
       and prompts, all the while upholding exceptional parameter efficiency. In this context, \([V]\) denotes a unique token used for fine-tuning a
-      specific subject in the text-to-image diffusion model. For more results, please visit <a href="gallery.html", target="_blank">gallery!</a>
-      
+      specific subject in the text-to-image diffusion model.
   </p>
+  <p class="carousel-caption" style="width: 70%; margin-left: auto; margin-right: auto; text-align: center;">
+    For more results, please visit <a href="gallery.html", target="_blank">gallery!</a>
+      
+</p>
   </div>
   </div>
 </section>
@@ -263,9 +272,7 @@ ul.checkmark li::before {
   </div>
   </section>
 
-<hr class="divider" />  
-
-<section class="section">
+<!-- <section class="section">
   <div class="container is-widescreen">
     <div class="section-title has-text-centered is-centered">
       <h2 class="title is-3">Unraveling Textual Descriptions into Artistic Creations</h2><br>
@@ -283,7 +290,7 @@ ul.checkmark li::before {
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 <hr class="divider">
@@ -296,8 +303,6 @@ ul.checkmark li::before {
       </div>
         
         <div class="captioned_video">
-            <img class="gallery" src="static/images/fidelity.png" style="width: 100%;"/>
-            <hr class="divider">
             <img class="gallery" src="static/images/LoRA.png" style="width: 70%;"/>
         </div>
 
@@ -317,7 +322,7 @@ ul.checkmark li::before {
       </div>
         
         <div class="captioned_video">
-            <img class="gallery" src="static/images/text_align.png" style="width: 100%;"/>
+            <img class="gallery" src="static/images/text_align.png" style="width: 70%;"/>
         </div>
 
     </div>
