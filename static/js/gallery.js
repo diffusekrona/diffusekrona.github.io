@@ -8,6 +8,7 @@ function populateGallery(imageUrls, krona_or_lora ,fname, galleryId) {
         var img = document.createElement('img');
         img.src = "./static/" + krona_or_lora + '/' + fname + '/' + 'generated/' + image;
         img.width = 224;
+        img.height = 224;
         container.appendChild(img);
 
         // Create a caption for each image
