@@ -107,6 +107,10 @@ mark {
 
 .results-carousel {
   overflow: hidden;
+  width: 75%;
+  display: block; 
+  margin-left: auto; 
+  margin-right: auto;
 }
 
 .results-carousel .item {
@@ -114,6 +118,10 @@ mark {
   overflow: hidden;
   padding: 20px;
   font-size: 0;
+  width: 100%;
+  margin-left: auto; 
+  margin-right: auto;
+
 }
 
 .results-carousel video {
