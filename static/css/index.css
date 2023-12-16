@@ -77,33 +77,6 @@ mark {
   font-family: 'Hedvig Letters Serif', serif;
 }
 
-.publication-venue {
-    color: #555;
-    width: fit-content;
-    font-weight: bold;
-}
-
-.publication-awards {
-    color: #ff3860;
-    width: fit-content;
-    font-weight: bolder;
-}
-
-.publication-authors {
-}
-
-.publication-authors a {
-   color: hsl(204, 86%, 53%) !important;
-}
-
-.publication-authors a:hover {
-    text-decoration: underline;
-}
-
-.author-block {
-  display: inline-block;
-}
-
 .publication-banner img {
 }
 
@@ -134,65 +107,33 @@ mark {
 
 .results-carousel {
   overflow: hidden;
-  padding-bottom: 10px;
-  padding-top: 5px;
-  margin: 50px;
 }
 
 .results-carousel .item {
-  width: 50px;
-  height: 50px;
-  padding-bottom: 10px;
-  margin: 50px;
+  margin: 5px;
   overflow: hidden;
-  padding: 50px;
+  padding: 20px;
   font-size: 0;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  /*margin: -25px 0 0 -25px;*/
-}
-
-.carousel-caption {
-  color: #555;
-  position: relative;
-  left: auto;
-  right: auto;
 }
 
 .results-carousel video {
   margin: 0;
 }
 
-/* .carousel-indicators{
-  bottom: -50px;
-  position: absolute;
-    top:50%;
-    left: 150%;
-    z-index: 15;
-
-    text-align: center;
-    list-style: none;
-} */
-/* .carousel-inner {
-  margin-bottom:50px;
-} */
-
 .slider-pagination .slider-page {
   background: #000000;
 }
 
-.eql-cntrb {
+.eql-cntrb { 
   font-size: smaller;
 }
-/*
+
 .container {
   padding-top: 0px;
   padding-bottom: 3rem;
 
 }
 
-*/
 
 
 /* .gallery {
