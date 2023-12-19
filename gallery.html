@@ -18,15 +18,15 @@
         .gallery {
         display: flex;
         justify-content: flex-start;
-        align-items: center;
+        align-items: middle;
         overflow-x: auto;
-        white-space: nowrap;
         border: 2px solid #000;
         border-radius: 5px;
         margin: 20px;
         padding: 10px;
         max-width: 75%;
     }
+
     .gallery .image-container {
         display: flex;
         flex-direction: column;
@@ -77,15 +77,13 @@
 
 .caption {
     text-align: center;
-    /* border: 2px solid #000;
-    border-radius: 5px; */
     padding: 10px;
     padding-bottom: 0;
     margin-top: 2px;
     margin-bottom: 0;
-    /* box-shadow: 0 0 10px rgba(0,0,0,0.5); */
     font-style: italic;
     width: 210px;
+    word-break: break-all;
 }
 
 .teaser .hero-body {

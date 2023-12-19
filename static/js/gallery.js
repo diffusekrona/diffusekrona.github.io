@@ -4,7 +4,7 @@ function populateGallery(imageUrls, krona_or_lora ,fname, galleryId) {
     imageUrls.forEach(function(image) {
         var container = document.createElement('div');
         container.className = 'image-container';
-        
+
         var img = document.createElement('img');
         img.src = "./static/" + krona_or_lora + '/' + fname + '/' + 'generated/' + image;
         img.width = 224;

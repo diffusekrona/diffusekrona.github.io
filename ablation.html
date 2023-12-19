@@ -155,5 +155,21 @@ ul.checkmark li::before {
                     </div>
                   </section>
 
+                  <section class="section hero">
+                    <div class="container is-max-desktop">
+                      <div class="section-title has-text-centered is-centered">
+                        <h2 class="title is-3">Choice of Modules to Fine-tune the model</h2>
+                        <div class="content has-text-justified">
+                          Our findings reveal that fine-tuning only the attention weight matrices, namely \(\left(W_K, W_Q, W_V, W_O\right)\), proves to be the most impactful and parameter-efficient strategy. Conversely, fine-tuning the FFN layers does not significantly enhance image synthesis quality but substantially increases the parameter count, approximately doubling the computational load. Refer to the figure below for a visual representation comparing synthesis image quality with and without fine-tuning FFN layers on top of attention matrices. This graph unequivocally demonstrates that incorporating MLP layers does not enhance fidelity in the results. On the contrary, it diminishes the quality of generated images in certain instances, such as \(\textit{A [V] backpack in sunflower field}\), while concurrently escalating the number of trainable parameters substantially, approximately \(2x\) times.
+                        </div>
+                          
+                          <div class="captioned_video">
+                              <img class="gallery" src="static/images/mlp_compressed.png" style="width: 100%;"/>
+                          </div>
+                  
+                      </div>
+                    </div>
+                  </section>
+
   </body>
   </html>
