@@ -72,6 +72,26 @@ section {
         margin: 0; /* Adjust this value to change the space between sections */
         padding: 0; /* Adjust this value to change the space within sections */
     }
+
+
+    #toggleButton {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 7px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition-duration: 0.4s;
+}
+
+#toggleButton:hover {
+    background-color: #45a049;
+}
   </style>
 </head>
 <body>
@@ -421,11 +441,9 @@ Furthermore, a reduced number of parameters results in a smaller fine-tuning mod
           <div class="inner_gallery2">
             <img class="gallery" src="static/images/comparison.png" alt="comp" style="width: 100%;"/>
           </div>  
-          
+          <button id="toggleButton">More Results</button>
+          <img id="extraImage" src="./static/images/new.png" style="display: none; width: 100%;" alt="extra image">
       </div>
-      <!-- <div class="more-results">
-        <p class="more-results-text">For more results, please visit <a href="SOTA.html", target="_blank">SOTA Comparison!</a></p><br>
-      </div>  -->
     </div>
   </div>
 </section>

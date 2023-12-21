@@ -28,6 +28,15 @@ $(document).ready(function() {
 		  });
 		});
 	  };
+
+	  document.getElementById('toggleButton').addEventListener('click', function() {
+		var img = document.getElementById('extraImage');
+		if (img.style.display === "none") {
+			img.style.display = "block";
+		} else {
+			img.style.display = "none";
+		}
+	});
 	  
 
 })
