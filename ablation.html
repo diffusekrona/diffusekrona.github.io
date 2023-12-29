@@ -1,175 +1,189 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <meta name="description" content="CDx">
-  <meta property="og:title" content="DiffuseKronA"/>
-  <meta property="og:description" content="A Parameter Efficient Fine-tuning Method for Personalized
-  Diffusion Models"/>
-  <meta property="og:url" content="diffusekrona.github.io"/>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <meta name="description" content="CDx">
+    <meta property="og:title" content="DiffuseKronA" />
+    <meta property="og:description" content="A Parameter Efficient Fine-tuning Method for Personalized
+  Diffusion Models" />
+    <meta property="og:url" content="diffusekrona.github.io" />
 
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="DiffuseKronA, Personalized Text-to-image generation, Diffusion, LDM, Stable Diffusion, SDXL, Kronecker Product, LoRA">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Keywords for your paper to be indexed by-->
+    <meta name="keywords" content="DiffuseKronA, Personalized Text-to-image generation, Diffusion, LDM, Stable Diffusion, SDXL, Kronecker Product, LoRA">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <link rel="icon" type="image/x-icon" href="static/images/CDx-Logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
-    <title>DiffuseKronA: A Parameter Efficient Fine-tuning Method for Personalized
-      Diffusion Models</title>
-    
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
+    <link rel="icon" type="image/x-icon" href="static/images/1.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+    <title>DiffuseKronA: A Parameter Efficient Fine-tuning Method for Personalized Diffusion Models</title>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
 
-  <style>
-table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-    tr:nth-child(odd) {
-        background-color: #f2f2f2;
-    }
-    th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #4CAF50;
-        color: white;
-    }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
 
-    ul.checkmark {
-    list-style-type: none;
-}
-
-ul.checkmark li::before {
-    content: "✅";
-    margin-right: 10px;
-}
-  </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        
+        tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+        
+        th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        ul.checkmark {
+            list-style-type: none;
+        }
+        
+        ul.checkmark li::before {
+            content: "✅";
+            margin-right: 10px;
+        }
+    </style>
 </head>
+
 <body>
 
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">DiffuseKronA: A Parameter Efficient Fine-tuning Method for Personalized
-              Diffusion Model</h1><br>
-             <h1 class="subtitle is-3 publication-subtitle">Ablation Study</h1>                  
-                  <section class="section hero">
-                    <div class="container is-max-desktop">
-                      <div class="section-title has-text-centered is-centered">
-                        <h2 class="title is-3">Effect of Training Iterations</h2>
-                        <div class="content has-text-justified">
-                          In T2I personalization, the timely attainment of satisfactory results within a specific number of iterations is crucial. This not only reduces the overall training time but also helps prevent overfitting to the training images, ensuring efficiency and higher fidelity in image generation. With SDXL, we successfully generate desired-fidelity images within 500 iterations, if the input images and prompt complexity are not very high. However, in cases where the input image complexity or the prompt complexity requires additional refinement, it is better to extend the training up to 1000 iterations as depicted below.
-                        </div>
-                          
-                          <div class="captioned_video">
-                              <img class="gallery" src="static/images/cat_.png" style="width: 100%;"/>
-                          </div>
-                  
-                      </div>
-                    </div>
-                  </section>
-                  
-                  <hr class="divider">
-                  
-                  <section class="section hero">
-                    <div class="container is-max-desktop">
-                      <div class="section-title has-text-centered is-centered">
-                        <h2 class="title is-3">Effect of Size of Kronecker Factors</h2>
-                        <div class="content has-text-justified">
-                          The size of the Kronecker factors significantly influences the images generated by DiffuseKronA. Larger Kronecker factors tend to produce images with higher resolution and more detailing, while smaller Kronecker factors result in lower-resolution images with less detailing. Images generated with larger Kronecker factors tend to look more realistic, while those generated with smaller Kronecker factors appear more abstract. Varying the Kronecker factors can result in a wide range of images, from highly detailed and realistic to more abstract and lower resolution.
-                          In the figure below when both a1 and a2 are set to relatively high values (8 and 64 respectively), the generated images are of very high fidelity and detail. The features of the dog and the house in the background are more defined and realistic with the house having a blue colour as mentioned in the prompt. When a1 is halved (4) while maintaining the same (64) results in images where the dog and the house are still quite detailed due to the high value of a2, but perhaps less so than in the previous case due to the smaller value of a1.
-                  However, when the factors are small \(\le\) 8, not only the generated images do not adhere to the prompt, but the number of trainable parameters increases drastically.  
-                        </div>
-                          
-                          <div class="captioned_video">
-                              <img class="gallery" src="static/images/dog_rank.png" style="width: 100%;"/>
-                          </div>
-                  
-                      </div>
-                    </div>
-                  </section>
-                  
-                  <hr class="divider">
-                  
-                  <section class="section hero">
-                    <div class="container is-max-desktop">
-                      <div class="section-title has-text-centered is-centered">
-                        <h2 class="title is-3">Effect of Learning Rate</h2>
-                        <div class="content has-text-justified">
-                          Our method produces consistent results across a wide range of learning rates. Here, we observed that the images generated for a learning rate closer to the optimal learning rate value \(6\times\mathrm{10}^{-4}\) generate similar images. However, learning rates exceeding \(1\times\mathrm{10}^{-3}\) contribute to model overfitting, resulting in high-fidelity images but with diminished emphasis on input text prompts. Conversely, learning rates below \(1\times\mathrm{10}^{-4}\) lead to lower fidelity in generated images, prioritizing input text prompts to a greater extent. 
-                        </div>
-                          
-                          <div class="captioned_video">
-                              <img class="gallery" src="static/images/iter_compressed.png" style="width: 100%;"/>
-                              <hr class="divider">
-                              <img class="gallery" src="static/images/stability.png" style="width: 100%;"/>
-                          </div>
-                  
-                      </div>
-                    </div>
-                  </section>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">DiffuseKronA: A Parameter Efficient Fine-tuning Method for Personalized Diffusion Model</h1><br>
+                        <h1 class="subtitle is-3 publication-subtitle">Ablation Study</h1>
+                        <section class="section hero">
+                            <div class="container is-max-desktop">
+                                <div class="section-title has-text-centered is-centered">
+                                    <h2 class="title is-3">Effect of Training Iterations</h2>
+                                    <div class="content has-text-justified">
+                                        In T2I personalization, the timely attainment of satisfactory results within a specific number of iterations is crucial. This not only reduces the overall training time but also helps prevent overfitting to the training images, ensuring efficiency and
+                                        higher fidelity in image generation. With SDXL, we successfully generate desired-fidelity images within 500 iterations, if the input images and prompt complexity are not very high. However, in cases where the input
+                                        image complexity or the prompt complexity requires additional refinement, it is better to extend the training up to 1000 iterations as depicted below.
+                                    </div>
 
-                  <hr class="divider">
+                                    <div class="captioned_video">
+                                        <img class="gallery" src="static/images/cat_.png" style="width: 100%;" />
+                                    </div>
 
-                  <section class="section hero">
-                    <div class="container is-max-desktop">
-                      <div class="section-title has-text-centered is-centered">
-                        <h2 class="title is-3">Few-shot Image Generation</h2>
-                        <div class="content has-text-justified">
-                          While our model demonstrates remarkable proficiency in generating compelling results with a single input image, it encounters challenges when attempting to generate diverse poses or angles. However, when supplied with multiple images (2, 3, or 4), our model adeptly captures additional spatial features from the input images, facilitating the generation of images with a broader range of poses and angles.
-                  
-                          Our model is able to effectively use the information from multiple input images to generate more accurate and detailed output images as depicted in below.  
-                        </div>
-                          
-                          <div class="captioned_video">
-                              <img class="gallery" src="static/images/robot_toy_inputImages_compressed.png" style="width: 100%;"/>
-                          </div>
-                  
-                      </div>
-                    </div>
-                  </section>
+                                </div>
+                            </div>
+                        </section>
 
-                  <section class="section hero">
-                    <div class="container is-max-desktop">
-                      <div class="section-title has-text-centered is-centered">
-                        <h2 class="title is-3">Choice of Modules to Fine-tune the model</h2>
-                        <div class="content has-text-justified">
-                          Our findings reveal that fine-tuning only the attention weight matrices, namely \(\left(W_K, W_Q, W_V, W_O\right)\), proves to be the most impactful and parameter-efficient strategy. Conversely, fine-tuning the FFN layers does not significantly enhance image synthesis quality but substantially increases the parameter count, approximately doubling the computational load. Refer to the figure below for a visual representation comparing synthesis image quality with and without fine-tuning FFN layers on top of attention matrices. This graph unequivocally demonstrates that incorporating MLP layers does not enhance fidelity in the results. On the contrary, it diminishes the quality of generated images in certain instances, such as \(\textit{A [V] backpack in sunflower field}\), while concurrently escalating the number of trainable parameters substantially, approximately \(2x\) times.
-                        </div>
-                          
-                          <div class="captioned_video">
-                              <img class="gallery" src="static/images/mlp_compressed.png" style="width: 100%;"/>
-                          </div>
-                  
-                      </div>
-                    </div>
-                  </section>
+                        <hr class="divider">
 
-  </body>
-  </html>
+                        <section class="section hero">
+                            <div class="container is-max-desktop">
+                                <div class="section-title has-text-centered is-centered">
+                                    <h2 class="title is-3">Effect of Size of Kronecker Factors</h2>
+                                    <div class="content has-text-justified">
+                                        The size of the Kronecker factors significantly influences the images generated by DiffuseKronA. Larger Kronecker factors tend to produce images with higher resolution and more detailing, while smaller Kronecker factors result in lower-resolution images
+                                        with less detailing. Images generated with larger Kronecker factors tend to look more realistic, while those generated with smaller Kronecker factors appear more abstract. Varying the Kronecker factors can result
+                                        in a wide range of images, from highly detailed and realistic to more abstract and lower resolution. In the figure below when both a1 and a2 are set to relatively high values (8 and 64 respectively), the generated
+                                        images are of very high fidelity and detail. The features of the dog and the house in the background are more defined and realistic with the house having a blue colour as mentioned in the prompt. When a1 is halved
+                                        (4) while maintaining the same (64) results in images where the dog and the house are still quite detailed due to the high value of a2, but perhaps less so than in the previous case due to the smaller value of a1.
+                                        However, when the factors are small \(\le\) 8, not only the generated images do not adhere to the prompt, but the number of trainable parameters increases drastically.
+                                    </div>
+
+                                    <div class="captioned_video">
+                                        <img class="gallery" src="static/images/dog_rank.png" style="width: 100%;" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+
+                        <hr class="divider">
+
+                        <section class="section hero">
+                            <div class="container is-max-desktop">
+                                <div class="section-title has-text-centered is-centered">
+                                    <h2 class="title is-3">Effect of Learning Rate</h2>
+                                    <div class="content has-text-justified">
+                                        Our method produces consistent results across a wide range of learning rates. Here, we observed that the images generated for a learning rate closer to the optimal learning rate value \(6\times\mathrm{10}^{-4}\) generate similar images. However, learning
+                                        rates exceeding \(1\times\mathrm{10}^{-3}\) contribute to model overfitting, resulting in high-fidelity images but with diminished emphasis on input text prompts. Conversely, learning rates below \(1\times\mathrm{10}^{-4}\)
+                                        lead to lower fidelity in generated images, prioritizing input text prompts to a greater extent.
+                                    </div>
+
+                                    <div class="captioned_video">
+                                        <img class="gallery" src="static/images/iter_compressed.png" style="width: 100%;" />
+                                        <hr class="divider">
+                                        <img class="gallery" src="static/images/stability.png" style="width: 100%;" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+
+                        <hr class="divider">
+
+                        <section class="section hero">
+                            <div class="container is-max-desktop">
+                                <div class="section-title has-text-centered is-centered">
+                                    <h2 class="title is-3">Few-shot Image Generation</h2>
+                                    <div class="content has-text-justified">
+                                        While our model demonstrates remarkable proficiency in generating compelling results with a single input image, it encounters challenges when attempting to generate diverse poses or angles. However, when supplied with multiple images (2, 3, or 4), our
+                                        model adeptly captures additional spatial features from the input images, facilitating the generation of images with a broader range of poses and angles. Our model is able to effectively use the information from
+                                        multiple input images to generate more accurate and detailed output images as depicted in below.
+                                    </div>
+
+                                    <div class="captioned_video">
+                                        <img class="gallery" src="static/images/robot_toy_inputImages_compressed.png" style="width: 100%;" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="section hero">
+                            <div class="container is-max-desktop">
+                                <div class="section-title has-text-centered is-centered">
+                                    <h2 class="title is-3">Choice of Modules to Fine-tune the model</h2>
+                                    <div class="content has-text-justified">
+                                        Our findings reveal that fine-tuning only the attention weight matrices, namely \(\left(W_K, W_Q, W_V, W_O\right)\), proves to be the most impactful and parameter-efficient strategy. Conversely, fine-tuning the FFN layers does not significantly enhance
+                                        image synthesis quality but substantially increases the parameter count, approximately doubling the computational load. Refer to the figure below for a visual representation comparing synthesis image quality with
+                                        and without fine-tuning FFN layers on top of attention matrices. This graph unequivocally demonstrates that incorporating MLP layers does not enhance fidelity in the results. On the contrary, it diminishes the quality
+                                        of generated images in certain instances, such as \(\textit{A [V] backpack in sunflower field}\), while concurrently escalating the number of trainable parameters substantially, approximately \(2x\) times.
+                                    </div>
+
+                                    <div class="captioned_video">
+                                        <img class="gallery" src="static/images/mlp_compressed.png" style="width: 100%;" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+
+</body>
+
+</html>

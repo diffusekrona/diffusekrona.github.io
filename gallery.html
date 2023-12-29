@@ -1,412 +1,1008 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap", rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./static/css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap" , rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./static/css/index.css">
+    <link rel="icon" type="image/x-icon" href="static/images/1.png">
+
     <style>
-      * {
-    font-family: 'Hedvig Letters Serif', serif;
-    }
+        * {
+            font-family: 'Hedvig Letters Serif', serif;
+        }
+        
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
             font-family: 'Hedvig Letters Serif', serif;
         }
+        
         .gallery {
-        display: flex;
-        justify-content: flex-start;
-        align-items: middle;
-        overflow-x: auto;
-        border: 2px solid #000;
-        border-radius: 5px;
-        margin: 20px;
-        padding: 10px;
-        max-width: 75%;
-    }
-
-    .gallery .image-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 0 5px;
-        padding-top: 0;
-    }
+            display: flex;
+            justify-content: flex-start;
+            align-items: middle;
+            overflow-x: auto;
+            border: 2px solid #000;
+            border-radius: 5px;
+            margin: 20px;
+            padding: 10px;
+            max-width: 75%;
+        }
+        
+        .gallery .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 5px;
+            padding-top: 0;
+        }
+        
         .gallery img {
             margin: 0 5px;
             border: 2px solid #000;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
-
-        ::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1; 
-    }
-    
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #888; 
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #555; 
-    }
-
-  .dataset {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-}
-
-.dataset img {
-    margin: 0 5px;
-    border: 2px solid #000;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    height: 180px;
-}
-
-.caption {
-    text-align: center;
-    padding: 10px;
-    padding-bottom: 0;
-    margin-top: 2px;
-    margin-bottom: 0;
-    font-style: italic;
-    width: 210px;
-    word-break: break-all;
-}
-
-.teaser .hero-body {
-  padding-top: 0;
-  padding-bottom: 3rem;
-}
-
-.teaser {
-  font-family: 'Hedvig Letters Serif', serif;
-}
-
-.diffuse {
-        font-size: 2.5em; /* Adjust this value to make the text larger or smaller */
-        text-align: justify;
-        max-width: 65%;
-    }
-  
-    hr.divider {
-    border: none;
-    border-top: 1px solid #b9b6b6; /* Change color as needed */
-    color: #fff;
-    background-color: #fff;
-    height: 1px;
-    width: 100%;
-    padding-bottom: 10px;
-}
-</style>
+        
+         ::-webkit-scrollbar {
+            width: 5px;
+        }
+        /* Track */
+        
+         ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        /* Handle */
+        
+         ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+        /* Handle on hover */
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .dataset {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+        
+        .dataset img {
+            margin: 0 5px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            height: 180px;
+        }
+        
+        .caption {
+            text-align: center;
+            padding: 10px;
+            padding-bottom: 0;
+            margin-top: 2px;
+            margin-bottom: 0;
+            font-style: italic;
+            width: 210px;
+            word-break: break-all;
+        }
+        
+        .teaser .hero-body {
+            padding-top: 0;
+            padding-bottom: 3rem;
+        }
+        
+        .teaser {
+            font-family: 'Hedvig Letters Serif', serif;
+        }
+        
+        .diffuse {
+            font-size: 2.5em;
+            /* Adjust this value to make the text larger or smaller */
+            text-align: justify;
+            max-width: 65%;
+        }
+        
+        hr.divider {
+            border: none;
+            border-top: 1px solid #b9b6b6;
+            /* Change color as needed */
+            color: #fff;
+            background-color: #fff;
+            height: 1px;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+    </style>
 </head>
 
 <body>
-  <h1 class="diffuse">DiffuseKronA: A Parameter Efficient Fine-tuning Method for Personalized Diffusion Model</h1>
+    <h1 class="diffuse">DiffuseKronA: A Parameter Efficient Fine-tuning Method for Personalized Diffusion Model</h1>
     <h1>Gallery</h1>
     <p class="caption" style="width: 100%;">
-      Notes: 
-      <ol>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ol>
-    </p>
-  <br>
-      <div class="dataset">
-          <img src="./static/krona/vase/input/1.png" style="width: 180px;">
-          <img src="./static/krona/vase/input/2.png" style="width: 180px;">
-          <img src="./static/krona/vase/input/3.png" style="width: 180px;">
-          <img src="./static/krona/vase/input/4.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] Vase</p>
-      
-      <div id="vasegallery" class="gallery">
-        <!-- Images will be inserted here by JavaScript -->
-      </div>
-
-      <script src="./static/js/gallery.js"></script>
-
-      <script>
-        var images = ['a [V] transparent vase with milk inside.png', 'a [V] vase buried in sand.png', 'a [V] vase floating on water.png', 'a [V] vase in beach.png', 'a [V] vase in cobblestone street.png', 'a [V] vase in front of Eiffel Tower.png', 'a [V] vase in snow.png', 'a [V] vase of green colour.png', 'A [V] vase on a road in city.png', 'a [V] vase with autumn leaves inside.png', 'a [V] vase with mountains in background.png', 'two [V] vases on a table.png'];
-        populateGallery(images, 'krona' ,'vase','vasegallery');
-      </script>
+        Notes: For High Quality images - Please Visit <a href="https://github.com/diffusekrona/data" , target="_blank">data!</a> </p>
+    <br>
 
 
-      <div class="dataset">
-        <img src="./static/krona/cat/input/1.png" style="width: 180px;">
-        <img src="./static/krona/cat/input/2.png" style="width: 180px;">
-        <img src="./static/krona/cat/input/3.png" style="width: 180px;">
-        <img src="./static/krona/cat/input/4.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] cat</p>
-    
-      <div id="catgallery" class="gallery">
-        <!-- Images will be inserted here by JavaScript -->
-      </div>
-
-      <script src="./static/js/gallery.js"></script>
-
-      <script>
-        var images = ['a [V] cat on a cobblestone street.png','a [V] cat in a police outfit.png','a [V] cat in chef outfit.png','a [V] cat is snow.png','a [V] cat lying on a purple rug In a forest.png','a [V] cat on wooden floor.png','a [V] cat wearing a rainbow scarf.png','a [V] cat wearing a red hat.png','a [V] cat wet in water.png','a [V] cat with blue house in background.png','a [V] cat with city in background.png','a [V] cat with mountains in background.png']
-        populateGallery(images, 'krona' ,'cat','catgallery');
-      </script>
+    <!-- FACE data -->
 
 
-      <div class="dataset">
-        <img src="./static/krona/cat2/input/1.png" style="width: 180px;">
-        <img src="./static/krona/cat2/input/2.png" style="width: 180px;">
-        <img src="./static/krona/cat2/input/3.png" style="width: 180px;">
-        <img src="./static/krona/cat2/input/4.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] cat</p>
-    
-      <div id="cat2gallery" class="gallery">
-        <!-- Images will be inserted here by JavaScript -->
-      </div>
-
-      <script src="./static/js/gallery.js"></script>
-
-      <script>
-        var images = ['a [V] cat floating on water in pool.png', 'a [V] cat in chef outfit.png', 'a [V] cat in doctors outfit.png', 'a [V] cat in police outfit.png', 'a [V] cat lying on a purple rug in forest.png', 'a [V] cat on a wooden floor.png', 'a [V] cat on pink cloth.png', 'a [V] cat wearing a Christmas cap.png', 'a [V] cat wearing a colourful scarf.png', 'a [V] cat with blue house in background.png', 'a [V] in a beach.png', 'a [V] with mountains in background.png']
-        populateGallery(images, 'krona' ,'cat2','cat2gallery');
-      </script>
-
-
-      <div class="dataset">
-        <img src="./static/krona/dog3/input/1.png" style="width: 180px;">
-        <img src="./static/krona/dog3/input/2.png" style="width: 180px;">
-        <img src="./static/krona/dog3/input/3.png" style="width: 180px;">
-        <img src="./static/krona/dog3/input/4.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
-    
-      <div id="dog3gallery" class="gallery">
-        <!-- Images will be inserted here by JavaScript -->
-      </div>
-
-      <script src="./static/js/gallery.js"></script>
-
-      <script>
-        var images = ['a [V] dog in front of mountains.png', 'a [V] dog in police outfit.png', 'a [V] dog in purple wizard outfit.png', 'a [V] dog in snow.png', 'a [V] dog lying on purple rug in a forest.png', 'a [V] dog on a cobblestone street.png', 'a [V] dog on a forest.png', 'a [V] dog on pink cloth.png', 'a [V] dog on wooden floor.png', 'a [V] dog wearing a rainbow scarf.png', 'a [V] dog wearing pink sunglasses.png', 'a [V] wet dog.png']
-        populateGallery(images, 'krona' ,'dog3','dog3gallery');
-      </script>
-
-
-      <div class="dataset">
-        <img src="./static/krona/dog5/input/1.png" style="width: 180px;">
-        <img src="./static/krona/dog5/input/2.png" style="width: 180px;">
-        <img src="./static/krona/dog5/input/3.png" style="width: 180px;">
-        <img src="./static/krona/dog5/input/4.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
-    
-      <div id="dog5gallery" class="gallery">
-        <!-- Images will be inserted here by JavaScript -->
-      </div>
-
-      <script src="./static/js/gallery.js"></script>
-
-      <script>
-        var images = ['a [V] dog in chef outfit.png', 'a [V] dog in front of mountains.png', 'a [V] dog in police outfit.png', 'a [V] dog in purple wizard outfit.png', 'a [V] dog in snow.png', 'a [V] dog lying on purple rug in a forest.png', 'a [V] dog on a cobblestone street.png', 'a [V] dog on top of pink cloth.png', 'a [V] dog on wooden floor.png', 'a [V] dog wearing a rainbow scarf.png', 'a [V] dog wearing pink sunglasses.png', 'a [V] wet dog.png']
-        populateGallery(images, 'krona' ,'dog5','dog5gallery');
-      </script>
-
-
-      <div class="dataset">
-        <img src="./static/krona/dog7/input/1.png" style="width: 180px;">
-        <img src="./static/krona/dog7/input/2.png" style="width: 180px;">
-        <img src="./static/krona/dog7/input/3.png" style="width: 180px;">
-        <img src="./static/krona/dog7/input/4.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
-    
-      <div id="dog7gallery" class="gallery">
-        <!-- Images will be inserted here by JavaScript -->
-      </div>
-
-      <script src="./static/js/gallery.js"></script>
-
-      <script>
-        var images = ['a [V] dog in chef outfit.png', 'a [V] dog in front of mountains.png', 'a [V] dog in snow.png', 'a [V] dog lying on a purple rug in a forest.png', 'a [V] dog on a beach.png', 'a [V] dog on a cobblestone street.png', 'a [V] dog on wooden floor.png', 'a [V] dog wearing a colourful scarf.png', 'a [V] dog wearing pink sunglasses.png', 'a [V] dog with blue house in background.png', 'a [V] dog with city in background.png', 'a [V] wet dog.png']
-        populateGallery(images, 'krona' ,'dog7','dog7gallery');
-      </script>
-
-      <div class="dataset">
-        <img src="./static/krona/bear_plushie/input/1.png" style="width: 180px;">
-        <img src="./static/krona/bear_plushie/input/2.png" style="width: 180px;">
-        <img src="./static/krona/bear_plushie/input/3.png" style="width: 180px;">
-        <img src="./static/krona/bear_plushie/input/4.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] plushie</p>
-    
-      <div id="bear_plushiegallery" class="gallery">
-        <!-- Images will be inserted here by JavaScript -->
-      </div>
-
-      <script src="./static/js/gallery.js"></script>
-
-      <script>
-        var images = ['a [V] plushie floating on water.png', 'a [V] plushie in beach.png', 'a [V] plushie in cobblestone street.png', 'a [V] plushie in front of Eiffel Tower.png', 'a [V] plushie of purple colour.png', 'a [V] plushie on a pink cloth.png', 'a [V] plushie on purple rug in forest.png', 'a [V] plushie on wooden floor.png', 'a [V] plushie or red colour.png', 'a [V] plushie with autumn leaves inside.png', 'a [V] plushie with mountains in background.png']
-        populateGallery(images, 'krona' ,'bear_plushie','bear_plushiegallery');
-      </script>
-      
-
-      <div class="dataset">
-        <img src="./static/krona/dog8/input/1.png" style="width: 180px;">
-        <img src="./static/krona/dog8/input/2.png" style="width: 180px;">
-        <img src="./static/krona/dog8/input/3.png" style="width: 180px;">
-        <img src="./static/krona/dog8/input/4.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
-    
-      <div id="dog8gallery" class="gallery">
-        <!-- Images will be inserted here by JavaScript -->
-      </div>
-
-      <script src="./static/js/gallery.js"></script>
-
-      <script>
-        var images = ['a [V] dog in a forest.png', 'a [V] dog in chef outfit.png', 'a [V] dog in front of mountains.png', 'a [V] dog in snow.png', 'a [V] dog in wizard outfit.png', 'a [V] dog on a beach.png', 'a [V] dog on a cobblestone street.png', 'a [V] dog on wooden floor.png', 'a [V] dog wearing pink sunglasses.png', 'a [V] dog with blue house in background.png', 'a [V] dog with city in background.png', 'a [V] wet dog.png']
-        populateGallery(images, 'krona' ,'dog8','dog8gallery');
-      </script>
-
-
-      <div class="dataset">
-        <img src="./static/krona/doggy/input/1.png" style="width: 180px;">
-        <img src="./static/krona/doggy/input/2.png" style="width: 180px;">
-        <img src="./static/krona/doggy/input/3.png" style="width: 180px;">
-        <img src="./static/krona/doggy/input/4.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
-    
-      <div id="doggygallery" class="gallery">
-        <!-- Images will be inserted here by JavaScript -->
-      </div>
-
-      <script src="./static/js/gallery.js"></script>
-
-      <script>
-        var images = ['a [V] dog at a beach with a view of seashore.png', 'a [V] dog in Times Square.png', 'a [V] dog jumping in a swimming pool.png', 'a [V] dog wearing sunglasses.png', 'a sculpture of a [V] dog.png', 'Painting of a [V] dog at a beach by artist Claude Monet.png']
-        populateGallery(images, 'krona' ,'doggy','doggygallery');
-      </script>
-      
-      
-      <div class="dataset">
-        <img src="./static/krona/dog_backpack/input/1.png" style="width: 180px;">
-        <img src="./static/krona/dog_backpack/input/2.png" style="width: 180px;">
-        <img src="./static/krona/dog_backpack/input/3.png" style="width: 180px;">
-        <img src="./static/krona/dog_backpack/input/4.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] backpack</p>
-    
-      <div id="dog_backpack_gallery" class="gallery">
-        <!-- Images will be inserted here by JavaScript -->
-      </div>
-
-      <script src="./static/js/gallery.js"></script>
-
-      <script>
-        var images = ['a [V] backpack floating on top of water.png', 'a [V] backpack in the jungle.png', 'a [V] backpack on on a cobblestone street.png', 'a [V] backpack on the beach.png', 'a [V] backpack on top of a dirt road.png', 'a [V] backpack on top of a white rug.png', 'a [V] backpack on top of a wooden floor.png', 'a [V] backpack on top of green grass with sunflowers around it.png', 'a [V] backpack on top of the sidewalk in a crowded street.png', 'a [V] backpack with a mountain in the background.png', 'a [V] backpack with a tree and autumn leaves in the background.png']
-        populateGallery(images, 'krona' ,'dog_backpack','dog_backpack_gallery');
-      </script>
-
-      <div class="dataset">
+    <div class="dataset">
         <img src="./static/krona/harshit_human/input/1.png" style="width: 180px;">
         <img src="./static/krona/harshit_human/input/2.png" style="width: 180px;">
         <img src="./static/krona/harshit_human/input/3.png" style="width: 180px;">
         <img src="./static/krona/harshit_human/input/4.png" style="width: 180px;">
         <img src="./static/krona/harshit_human/input/5.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] face</p>
-    
-      <div id="harshit_gallery" class="gallery">
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] face</p>
+
+    <div id="harshit_gallery" class="gallery">
         <!-- Images will be inserted here by JavaScript -->
-      </div>
+    </div>
 
-      <script src="./static/js/gallery.js"></script>
+    <script src="./static/js/gallery.js"></script>
 
-      <script>
+    <script>
         var images = ['a [V] face dressed as a knight, standing in a medieval castle.png', 'a [V] face image dressed in a Banarasi Silk Sherwani adorned with intricate zari work, showcasing the beauty of Indian craftsmanship.png', 'a [V] face image wearing a Dhoti-Kurta Ensemble.png', 'a [V] face image wearing a Kashmiri Pheran and Pashmina Shawllor.png', 'a [V] face in a chef\'s outfit, cooking in a kitchen.png', 'a [V] face in a classic black suit for men, inspired by Armani\'s style.png', 'a [V] face in a minimalist men\'s with a clean-lined overcoat, monochromatic turtleneck.png', 'a [V] face presenting understated elegance in a Classic Black Suit by Calvin Klein with black bow tie.png', 'a [V] face radiating elegance wearing a Classic Velvet Dinner Jacket by Gucci, velvet texture.png', 'a [V] face selfie standing under the pink blossoms of a cherry tree.png', 'a [V] face selfie with the Eiffel Tower in the background.png', 'a [V] face showcasing a Classic Suit from Ralph Lauren of navy blue colour with peak lapels and a subtle pinstripe pattern.png', 'a [V] face wearing Victorian-era clothing, reading a book in a classic British library.png', 'a Monet-inspired painting of a [V] face standing near a blooming lily pond.png', 'a pointillistic painting of a [V] face.png', 'a watercolor painting of a [V] face with mountains in the background.png', 'Anime avatar of a [V] face.png', 'Photo of a [V] face taking a shot in basketball.png']
-        populateGallery(images, 'krona' ,'harshit_human','harshit_gallery');
-      </script>
+        populateGallery(images, 'krona', 'harshit_human', 'harshit_gallery');
+    </script>
 
 
-      <div class="dataset">
+    <div class="dataset">
         <img src="./static/krona/nityanand_human/input/1.png" style="width: 180px;">
         <img src="./static/krona/nityanand_human/input/2.png" style="width: 180px;">
         <img src="./static/krona/nityanand_human/input/3.png" style="width: 180px;">
         <img src="./static/krona/nityanand_human/input/4.png" style="width: 180px;">
         <img src="./static/krona/nityanand_human/input/5.png" style="width: 180px;">
         <img src="./static/krona/nityanand_human/input/6.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] face</p>
-    
-      <div id="nityanand_gallery" class="gallery">
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] face</p>
+
+    <div id="nityanand_gallery" class="gallery">
         <!-- Images will be inserted here by JavaScript -->
-      </div>
+    </div>
 
-      <script src="./static/js/gallery.js"></script>
+    <script src="./static/js/gallery.js"></script>
 
-      <script>
+    <script>
         var images = ['a [V] face dressed as a knight, standing in a medieval castle.png', 'a [V] face wearing Victorian-era clothing, reading a book in a classic British library.png', 'a pointillistic painting of a [V] face.png', 'Anime avatar of a [V] face.png', 'a watercolor painting of a [V] face with mountains in the background.png', 'a [V] face as a character in the Sherlock Holmes\' movie.png', 'a [V] face in an astronaut suit, floating in a spaceship.png', 'a [V] face selfie with the Eiffel Tower in the background.png', 'a [V] face selfie standing under the pink blossoms of a cherry tree.png', 'a [V] face image wearing a Kashmiri Pheran and Pashmina Shawllor.png', 'a [V] face image dressed in a Banarasi Silk Sherwani adorned with intricate zari work, showcasing the beauty of Indian craftsmanship.png', 'a [V] face image in a Traditional Rajput Attire.png', 'a [V] face in a sporty and casual outfit with a Nike touch, tech jacket, moisture-wicking t-shirt, and a sporty cap.png', 'a [V] face in a classic black suit for men, inspired by Armani\'s style.png', 'a [V] face radiating elegance wearing a Classic Velvet Dinner Jacket by Gucci.png', 'a [V] face showcasing a Classic Suit from Ralph Lauren.png', 'a [V] face embracing the charm of a classic double breasted suit, bold checkered pattern.png', 'a [V] face with long beard in a chef\'s outfit, cooking in a kitchen.png']
-        populateGallery(images, 'krona' ,'nityanand_human','nityanand_gallery');
-      </script>
+        populateGallery(images, 'krona', 'nityanand_human', 'nityanand_gallery');
+    </script>
 
 
 
-      <div class="dataset">
+    <div class="dataset">
         <img src="./static/krona/shyam_human/input/1.png" style="width: 180px;">
         <img src="./static/krona/shyam_human/input/2.png" style="width: 180px;">
         <img src="./static/krona/shyam_human/input/3.png" style="width: 180px;">
         <img src="./static/krona/shyam_human/input/4.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] face</p>
-    
-      <div id="shyam_gallery" class="gallery">
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] face</p>
+
+    <div id="shyam_gallery" class="gallery">
         <!-- Images will be inserted here by JavaScript -->
-      </div>
+    </div>
 
-      <script src="./static/js/gallery.js"></script>
+    <script src="./static/js/gallery.js"></script>
 
-      <script>
+    <script>
         var images = ['a [V] face selfie standing under the pink blossoms of a cherry tree.png', 'a [V] face dressed as a knight, standing in a medieval castle.png', 'a [V] face wearing Victorian-era clothing, reading a book in a classic British library.png', 'a pointillistic painting of a [V] face.png', 'a Monet-inspired painting of a [V] face standing near a blooming lily pond.png', 'Anime avatar of a [V] face.png', 'a watercolor painting of a [V] face with mountains in the background.png', 'a [V] face as a character in the Sherlock Holmes\' movie.png', 'a [V] face impersonating a character from the Harry Potter movie.png', 'a [V] face selfie with the Eiffel Tower in the background.png', 'Photo of a [V] face taking a shot in basketball.png', 'a [V] face in a chef\'s outfit, cooking in a kitchen.png', 'a [V] face presenting understated elegance in a Classic Black Suit by Calvin Klein, suit\'s minimalist design, notch lapels, black tie for a formal look.png', 'a [V] face image dressed in a Banarasi Silk Sherwani adorned with intricate zari work, showcasing the beauty of Indian craftsmanship.png', 'a [V] face in an astronaut suit, floating in a spaceship.png', 'a [V] face projecting elegance with a Classic White Dinner Jacket by Giorgio Armani, ivory-white hue, black silk shawl lapels.png']
-        populateGallery(images, 'krona' ,'shyam_human','shyam_gallery');
-      </script>
+        populateGallery(images, 'krona', 'shyam_human', 'shyam_gallery');
+    </script>
+
+    <!-- CAR -->
 
 
-      <div class="dataset">
+
+
+    <div class="dataset">
+        <img src="./static/krona/car/input/1.png" style="width: 180px;">
+        <img src="./static/krona/car/input/2.png" style="width: 180px;">
+        <img src="./static/krona/car/input/3.png" style="width: 180px;">
+        <img src="./static/krona/car/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] anime car</p>
+
+    <div id="car_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] car of purple colour.png', 'A [V] car with mountains in background.png', 'A [V] car with city in background.png', 'A [V] car of pink colour.png', 'A [V] car with artistic filters of vibrant colours.png', 'A [V] car in high speed, like cinematic effect.png', 'A [V] police car.png', 'A [V] car in forest.png', 'A [V] car in vibrant graffiti art theme.png', 'A stunt [V] car flying through the air.png', 'A [V] dusty car showcasing its charm on streets of Italy.png', 'A [V] car submerged in water.png', 'A [V] car of red colour.png', 'A [V] car painting blending from swarm of butterflies.png', 'A [V] car with ghostly effects with ethereal effects.png', 'Showcase evolution of a vintage [V] car across different models of car.png', 'A [V] car in wheat field.png', 'A [V] car with open sunroof in a landscape.png', 'A [V] car in desert.png', 'A [V] shiny car of golden colour.png', 'A [V] car of yellow colour.png', 'A [V] red car on wooden floor.png', 'A [V] car in snow.png', 'A [V] car on crowded street.png', 'A [V] car of blue colour.png', 'A [V] car integrated in neon-lit cyberpunk cityscape.png', 'A [V] car floating in water.png', 'collage featuring different [V] car unique modifications.png', 'A [V] Sci-fi car.png', 'A [V] silver car in front of Eiffel Tower.png', 'A [V] on beach.png', 'A [V] car with abstract geometric patterns.png', 'A [V] car in cobble stone street.png', 'A [V] car on rain-soaked streets.png', 'A [V] car in pillars of heaven.png']
+        populateGallery(images, 'krona', 'car', 'car_gallery');
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Anime -->
+
+
+
+
+    <div class="dataset">
         <img src="./static/krona/anime_shokokomi/input/1.png" style="width: 180px;">
         <img src="./static/krona/anime_shokokomi/input/2.png" style="width: 180px;">
         <img src="./static/krona/anime_shokokomi/input/3.png" style="width: 180px;">
         <img src="./static/krona/anime_shokokomi/input/4.png" style="width: 180px;">
-      </div>
-      <p class="caption" style="border: none; box-shadow: none;">A [V] anime character</p>
-    
-      <div id="anime_shokokomi_gallery" class="gallery">
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] anime character</p>
+
+    <div id="anime_shokokomi_gallery" class="gallery">
         <!-- Images will be inserted here by JavaScript -->
-      </div>
+    </div>
 
-      <script src="./static/js/gallery.js"></script>
+    <script src="./static/js/gallery.js"></script>
 
-      <script>
-        var images = ['A [V] anime character in her school uniform, holding a notebook and pen. She\'s blushing and looking shy while trying to initiate a conversation with someone.png', 'A [V] anime character at a library, surrounded by towering bookshelves. She\'s seen enthusiastically recommending a book to a fellow student with a bright smile.png', 'A [V] anime character in a café, sipping a cup of tea and attempting to communicate through written notes with a new friend. She has a determined expression on her face.png', 'A [V] anime character on a sunny day, wearing a cute summer dress and happily playing with a group of friends at a park. She\'s laughing and running around.png', 'A [V] anime character during a rainy day, sharing an umbrella with a classmate, both of them blushing. They exchange notes to communicate while avoiding eye contact.png', 'A [V] anime character dressed as a superhero, complete with a cape and mask, ready to face her social anxiety head-on and conquer her fears.png', 'A [V] anime character in a fantasy setting, with a medieval-style dress and surrounded by mythical creatures. She\'s confidently conversing with a dragon, showcasing her growth in communication.png', 'A [V] anime character participating in a school festival, working at a food stall with a bright and friendly expression as she serves customers.png', 'A [V] anime character as an artist, sitting in front of an easel, passionately painting a beautiful landscape. She\'s in her element, expressing herself through art.png', 'A [V] anime character dressed in traditional Japanese attire, performing a graceful tea ceremony with a serene and composed demeanor.png', 'A [V] anime character at a karaoke bar, holding a microphone and belting out a song with a mix of nervousness and excitement. Her friends cheer her on in the background.png', 'A [V] anime character in a whimsical dream world, surrounded by floating books, talking animals, and vibrant colors. She\'s exploring this surreal landscape with a sense of wonder.png', 'A [V] anime character in a detective outfit, solving a mystery with her notebook and keen observation skills. She\'s seen examining clues with determination.png', 'A [V] anime character in a futuristic sci-fi setting, operating a high-tech communication device that helps her express her thoughts and feelings effortlessly.png', 'A [V] anime character at a bustling city square, confidently giving a public speech with the crowd hanging on her every word. She\'s standing at a podium, radiating charisma.png', 'A [V] anime character at a school dance, dancing with a partner while both of them communicate through written notes. They share a romantic and heartwarming moment on the dance floor.png', 'A [V] anime character in a serene garden, surrounded by blooming flowers and butterflies. She\'s meditating with a calm and focused expression, finding peace in nature.png', 'A [V] anime character attending a 3d comic convention, looks like an original human, dressed as her favorite anime character.png', 'A [V] anime character as an astronaut, floating in the vastness of space, and communicating with extraterrestrial lifeforms through universal symbols and drawings.png', 'A [V] anime character on a mountain hiking adventure, conquering her fear of heights and social anxiety as she communicates with her hiking group during the journey.png']
-        populateGallery(images, 'krona' ,'anime_shokokomi','anime_shokokomi_gallery');
-      </script>
+    <script>
+        var images = ['A [V] anime character dressed as a superhero, complete with a cape and mask, ready to face her social anxiety head-on and conquer her fears.png', 'A [V] anime character on a mountain hiking adventure, conquering her fear of heights and social anxiety as she communicates with her hiking group during the journey.png', "A [V] anime character in a whimsical dream world, surrounded by floating books, talking animals, and vibrant colors. She's exploring this surreal landscape with a sense of wonder.png", "A [V] anime character in a fantasy setting, with a medieval-style dress and surrounded by mythical creatures. She's confidently conversing with a dragon, showcasing her growth in communication.png", 'A [V] anime character at a school dance, dancing with a partner while both of them communicate through written notes. They share a romantic and heartwarming moment on the dance floor.png', "A [V] anime character on a sunny day, wearing a cute summer dress and happily playing with a group of friends at a park. She's laughing and running around.png", 'A [V] anime character participating in a school festival, working at a food stall with a bright and friendly expression as she serves customers.png', 'A [V] anime character in a café, sipping a cup of tea and attempting to communicate through written notes with a new friend. She has a determined expression on her face.png', 'A [V] anime character at a karaoke bar, holding a microphone and belting out a song with a mix of nervousness and excitement. Her friends cheer her on in the background.png', 'A [V] anime character in a futuristic sci-fi setting, operating a high-tech communication device that helps her express her thoughts and feelings effortlessly.png', "A [V] anime character in a serene garden, surrounded by blooming flowers and butterflies. She's meditating with a calm and focused expression, finding peace in nature.png", "A [V] anime character at a library, surrounded by towering bookshelves. She's seen enthusiastically recommending a book to a fellow student with a bright smile.png", "A [V] anime character in a detective outfit, solving a mystery with her notebook and keen observation skills. She's seen examining clues with determination.png", 'A [V] anime character as an astronaut, floating in the vastness of space, and communicating with extraterrestrial lifeforms through universal symbols and drawings.png', 'A [V] anime character attending a 3d comic convention, looks like an original human, dressed as her favorite anime character.png', "A [V] anime character at a bustling city square, confidently giving a public speech with the crowd hanging on her every word. She's standing at a podium, radiating charisma.png", 'A [V] anime character during a rainy day, sharing an umbrella with a classmate, both of them blushing. They exchange notes to communicate while avoiding eye contact.png', "A [V] anime character in her school uniform, holding a notebook and pen. She's blushing and looking shy while trying to initiate a conversation with someone.png", "A [V] anime character as an artist, sitting in front of an easel, passionately painting a beautiful landscape. She's in her element, expressing herself through art.png", 'A [V] anime character dressed in traditional Japanese attire, performing a graceful tea ceremony with a serene and composed demeanor.png']
+        populateGallery(images, 'krona', 'anime_shokokomi', 'anime_shokokomi_gallery');
+    </script>
 
-      
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/nami/input/1.png" style="width: 180px;">
+        <img src="./static/krona/nami/input/2.png" style="width: 180px;">
+        <img src="./static/krona/nami/input/3.png" style="width: 180px;">
+        <img src="./static/krona/nami/input/4.png" style="width: 180px;">
+        <img src="./static/krona/nami/input/5.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] anime character</p>
+
+    <div id="nami_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['An underwater explorer [V] anime with advanced diving gear.png', 'A [V] anime in a cyberpunk rebellion, leading a group fighting.png', 'A [V] sks_nami reading a book in a library.png', 'A [V] anime carrying a magical filled lantern that guides her path.png', 'A [V] anime in front of the ocean.png', 'A [V] anime as a guardian of a mystical underwater portal connecting different dimensions.png', 'A [V] anime as ice sculptures inside a glass.png', 'A [V] anime in a steampunk setting, using water-powered machinery.png', 'A [V] anime in front of swimming pool, ready for a competition.png', 'An artist [V] anime who paints murals on the ocean floor visible only during high tide.png', 'A [V] anime integrated into her robotic parts.png', 'A [V] anime with a magical orb trying to find something.png', 'A [V] anime holding a compass in font of ship and sea.png', 'A [V] anime working as an engineer looking like a captain.png', 'A [V] anime as a diplomat between underwater civilizations and land-dwelling societies.png', 'An aquatic-themed [V] anime with fins and scales, riding a water creature.png', 'A [V] anime in a cyberpunk cityscape.png', 'A [V] anime with holographic tattoos covering her arms and holding a tablet.png', 'A [V] anime in traditional Japanese attire like goddess of water.png', 'A [V] anime as a guardian of a mystical underwater garden, cultivating rare and magical plants.png', 'A [V] anime wearing a mask.png', 'A [V] anime in a desert setting, holding a glass of water.png', 'A [V] anime as a futuristic scientist, harnessing the power of liquid energy.png', 'A [V] anime with wings, soaring through the skies.png', 'A [V] anime as a chef, showing her culinary skills.png', 'A [V] anime with glowing tattoos on her arm.png', 'A [V] anime as a painter trying to create breathtaking art.png']
+        populateGallery(images, 'krona', 'nami', 'nami_gallery');
+    </script>
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/anime1/input/1.png" style="width: 180px;">
+        <img src="./static/krona/anime1/input/2.png" style="width: 180px;">
+        <img src="./static/krona/anime1/input/3.png" style="width: 180px;">
+        <img src="./static/krona/anime1/input/4.png" style="width: 180px;">
+        <img src="./static/krona/anime1/input/5.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] anime character</p>
+
+    <div id="anime1_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] anime riding a bicycle through a quaint town.png', 'A [V] anime backside view, exploring a futuristic city.png', 'A [V] anime at a bustling amusement park.png', 'A [V] anime sitting in front of bornfire.png', 'A [V] anime playing with a puppy in a grassy field.png', 'A [V] anime as a chef, switching between culinary attire while preparing dishes in a busy kitchen.png', 'A [V] anime enjoying a spa day in a luxurious setting.png', 'A [V] anime baking cookies in a kitchen filled with warmth.png', 'A [V] anime dressed in elegant Victorian fashion with black hair, attending a masquerade ball.png', 'A [V] anime as a futuristic racer, switching into high-speed racing suits on a sci-fi racetrack.png', 'A [V] anime building a sandcastle on the beach.png', 'A [V] blacked hair anime practicing martial arts in a serene dojo.png', 'A [V] anime as a space explorer, wearing a high-tech spacesuit in an alien landscape.png', 'A [V] anime reading a book in a cozy library wearing glasses and headphones.png', 'A [V] anime at a summer fireworks festival.png', 'A [V] anime scuba diving in a coral reef.png', 'A [V] anime practicing archery in a bamboo forest.png', 'A [V] anime enjoying a cup of tea in a traditional Japanese garden.png', 'A [V] anime exploring a mystical forest.png', 'A [V] anime wearing Japanese dress and flying a kite in a windy field.png', 'A [V] anime in a futuristic cyberpunk city, wearing a sleek and modern hot outfit.png', 'A [V] anime participating in a cooking class.png', 'A [V] anime sitting on a swing under a cherry blossom tree.png', 'A [V] anime relaxing in a hammock in a tropical paradise.png', 'A [V] anime stargazing on a clear night.png', 'A [V] anime as a professional athlete, donning different sports attire in various competition scenes.png', 'A [V] anime attending a traditional tea ceremony.png']
+        populateGallery(images, 'krona', 'anime1', 'anime1_gallery');
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Living DOG -->
+
+
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/dog/input/1.png" style="width: 180px;">
+        <img src="./static/krona/dog/input/2.png" style="width: 180px;">
+        <img src="./static/krona/dog/input/3.png" style="width: 180px;">
+        <img src="./static/krona/dog/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
+
+    <div id="dog_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] dog in Coachella.png', 'A [V] dog playing in water.png', 'A [V] dog in a firefighter outfit.png', 'A [V] dog in forest.png', 'A [V] dog wearing pink sunglasses.png', 'A [V] dog in the Versailles Hall of Mirror.png', 'A [V] dog in police outfit.png', 'A [V] dog in a black suit outfit.png', 'A [V] dog on a cobblestone street.png', 'A [V] dog in front of blue house.png', 'A [V] dog in chef outfit.png', 'A [V] dog wearing a rainbow scarf.png', 'A [V] dog in snow.png', 'A [V] dog in Mount Fuji.png', 'A [V] dog wearing a sunglasses.png', 'A [V] dog superman outfit.png', 'A [V] dog wearing a Santa cap.png', 'A [V] dog in front of Eiffel Tower.png', 'A [V] dog in a purple wizard outfit.png', 'A [V] dog wearing a red hat.png', 'A [V] dog in beach.png', 'A [V] dog in wooden floor.png', 'A [V] dog in the gardens of Versailles.png']
+        populateGallery(images, 'krona', 'dog', 'dog_gallery');
+    </script>
+
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/dog2/input/1.png" style="width: 180px;">
+        <img src="./static/krona/dog2/input/2.png" style="width: 180px;">
+        <img src="./static/krona/dog2/input/3.png" style="width: 180px;">
+        <img src="./static/krona/dog2/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
+
+    <div id="dog2_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] Dog wearing a red cap.png', 'A [V] Dog wearing an Ironman Outfit.png', 'a [V] dog wearing sunglasses.png', 'A [V] Dog in forest.png', 'A [V] Dog on top of wooden floor.png', 'A [V] Dog wearing pink sunglasses.png', 'A [V] Dog wearing Angel Wing.png', 'A [V] Dog in a nurse outfit.png', 'A [V] Dog with blue house in background.png', 'A [V] Dog in chef outfit.png', 'A [V] Dog in a police outfit.png', 'A [V] Dog in snow.png', 'A [V] Dog wearing a magic black hat.png', 'A [V] Dog lying on a purple rug In a forest.png', 'A [V] Dog with city in background.png', 'A [V] Dog cross breed with hippocampus .png', 'A [V] Dog on top of pink fabric.png', 'A [V] Dog wearing black bow tie.png', 'A [V] Dog on a beach.png']
+        populateGallery(images, 'krona', 'dog2', 'dog2_gallery');
+    </script>
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/dog3/input/1.png" style="width: 180px;">
+        <img src="./static/krona/dog3/input/2.png" style="width: 180px;">
+        <img src="./static/krona/dog3/input/3.png" style="width: 180px;">
+        <img src="./static/krona/dog3/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
+
+    <div id="dog3_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] Dog wearing black cap and bow tie.png', 'A [V] Dog wearing sunglasses.png', 'A [V] Dog wearing rainbow scarf.png', 'A [V] Dog sleeping.png', 'A [V] Dog wearing red cap.png', 'A [V] Dog wearing pink sunglasses.png', 'A [V] Dog in front of mountains.png', 'A [V] Dog in police outfit.png', 'A [V] Dog on a cobblestone street.png', 'A [V] Dog on a forest.png', 'A [V] Dog in purple wizard outfit.png', 'A [V] Dog in chef outfit.png', 'A [V] Dog in snow.png', 'A [V] Dog on pink cloth.png', 'A [V] Dog in superman outfit.png', 'A [V] Dog in dog house.png', 'A [V] Dog in front of city.png', 'A [V] Dog getting hair cut.png', 'A [V] Dog on wooden floor.png', 'a [V] dog lying on purple rug in a forest.png', 'A [V] wet dog.png']
+        populateGallery(images, 'krona', 'dog3', 'dog3_gallery');
+    </script>
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/dog5/input/1.png" style="width: 180px;">
+        <img src="./static/krona/dog5/input/2.png" style="width: 180px;">
+        <img src="./static/krona/dog5/input/3.png" style="width: 180px;">
+        <img src="./static/krona/dog5/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
+
+    <div id="dog5_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] Dog with mountains in the background.png', 'A [V] Dog wearing sunglasses.png', 'A [V] Dog sleeping.png', 'A [V] Dog wearing pink sunglasses.png', 'A [V] Dog in front of mountains.png', 'A [V] Dog with blue house in the background.png', 'A [V] Dog in police outfit.png', 'A [V] Dog on a cobblestone street.png', 'A [V] Dog in top of pink fabric.png', 'A [V] Dog in purple wizard outfit.png', 'A [V] Dog in chef outfit.png', 'A [V] Dog wearing a rainbow scarf.png', 'A [V] Dog in snow.png', 'A [V] Dog wearing black suit.png', 'A [V] Dog wearing black hat.png', 'A [V] Dog wearing santa cap.png', 'A [V] Dog with city in background.png', 'A [V] Dog on wooden floor.png', 'A [V] Dog getting a haircut.png', 'A [V] Dog in the Acropolis.png', 'A [V] Dog lying on purple rug in a forest.png', 'A [V] Dog wearing cap.png', 'A [V] wet Dog.png']
+        populateGallery(images, 'krona', 'dog5', 'dog5_gallery');
+    </script>
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/dog6/input/1.png" style="width: 180px;">
+        <img src="./static/krona/dog6/input/2.png" style="width: 180px;">
+        <img src="./static/krona/dog6/input/3.png" style="width: 180px;">
+        <img src="./static/krona/dog6/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
+
+    <div id="dog6_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] dog in a bucket.png', 'A [V] dog wearing sunglasses.png', 'A [V] dog wearing rainbow scarf.png', 'A sleeping [V] dog.png', 'A [V] dog in forest.png', 'A [V] dog on top of wooden floor.png', 'A [V] dog with blue house in the background.png', 'A [V] dog in police outfit.png', 'A [V] dog on top of cobble stone street.png', 'A [V] dog in purple wizard outfit.png', 'A [V] dog in snow.png', 'A [V] dog in superman outfit.png', 'A [V] dog in chefs outfit.png', 'A [V] dog with city in background.png', 'A [V] dog in black suit.png', 'A [V] dog getting a haircut.png', 'A [V] dog on top of pink fabric.png', 'A [V] dog in beach.png', 'A [V] dog in his house.png', 'A joyous [V] dog.png', 'A screaming [V] dog.png', 'A [V] dog with mountains in background .png']
+        populateGallery(images, 'krona', 'dog6', 'dog6_gallery');
+    </script>
+
+
+    <div class="dataset">
+        <img src="./static/krona/dog7/input/1.png" style="width: 180px;">
+        <img src="./static/krona/dog7/input/2.png" style="width: 180px;">
+        <img src="./static/krona/dog7/input/3.png" style="width: 180px;">
+        <img src="./static/krona/dog7/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
+
+    <div id="dog7_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] Dog wearing a colourful scarf.png', 'A [V] Dog in a bucket.png', 'A [V] Dog wearing sunglasses.png', 'A [V] Dog sleeping.png', 'A [V] Dog wearing red cap.png', 'A [V] Dog in forest.png', 'A [V] Dog wearing pink sunglasses.png', 'A [V] Dog in front of mountains.png', 'A [V] Dog in police outfit.png', 'A [V] Dog on a cobblestone street.png', 'A [V] Dog with blue house in background..png', 'A [V] Dog in chef outfit.png', 'A [V] Dog in snow.png', 'A [V] Dog lying on a purple rug in a forest.png', 'A [V] Dog in dog house.png', 'A [V] Dog wearing black suit.png', 'A [V] Dog wearing santa cap.png', 'A [V] Dog with city in background.png', 'A [V] Dog in firefighter outfit.png', 'A [V] Dog on wooden floor.png', 'A [V] Dog getting a haircut.png', 'A [V] Dog depressed.png', 'A [V] wet Dog.png']
+        populateGallery(images, 'krona', 'dog7', 'dog7_gallery');
+    </script>
+
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/dog8/input/1.png" style="width: 180px;">
+        <img src="./static/krona/dog8/input/2.png" style="width: 180px;">
+        <img src="./static/krona/dog8/input/3.png" style="width: 180px;">
+        <img src="./static/krona/dog8/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
+
+    <div id="dog8_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] Dog wearing sunglasses.png', 'A [V] Dog wearing rainbow scarf.png', 'A [V] Dog sleeping.png', 'A [V] Dog getting haircut.png', 'A [V] Dog in Acropolis.png', 'A [V] Dog wearing pink sunglasses.png', 'A [V] Dog in front of mountains.png', 'A [V] Dog in police outfit.png', 'a [V] dog on a cobblestone street.png', 'a [V] dog with blue house in background..png', 'A [V] Dog in chef outfit.png', 'A [V] Dog in snow.png', 'A [V] Dog in dog house.png', 'A [V] Dog in a forest.png', 'A [V] Dog wearing black suit.png', 'A [V] Dog wearing santa cap.png', 'A [V] Dog with city in background.png', 'A [V] Dog in firefighter outfit.png', 'A [V] Dog on wooden floor.png', 'A [V] Dog in bucket.png', 'A [V] Dog in wizard outfit.png', 'A [V] wet Dog.png', 'A [V] Dog on a beach.png', 'A [V] Dog on purple rug in forest.png']
+        populateGallery(images, 'krona', 'dog8', 'dog8_gallery');
+    </script>
+
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/doggy/input/1.png" style="width: 180px;">
+        <img src="./static/krona/doggy/input/2.png" style="width: 180px;">
+        <img src="./static/krona/doggy/input/3.png" style="width: 180px;">
+        <img src="./static/krona/doggy/input/4.png" style="width: 180px;">
+        <img src="./static/krona/doggy/input/5.png" style="width: 180px;">
+        <img src="./static/krona/doggy/input/7.png" style="width: 180px;">
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] dog</p>
+
+    <div id="doggy_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] dog oil painting Ghibli inspired.png', 'A sculpture of [V] dog.png', 'A [V] dog wearing a santa hat.png', 'A [V] dog wearing sunglasses.png', 'A [V] dog in the snow.png', 'A [V] dog in a black suit outfit.png', "Georgia O'Keeffe style a [V] dog painting.png", 'A [V] dog in a police outfit.png', 'A [V] dog wearing a rainbow scarf.png', 'A [V] dog at a beach with a view of seashore.png', 'A [V] dog in superman outfit.png', 'A [V] dog in Times Square.png', 'A [V] dog wearing pink glasses.png', 'A [V] dog with a blue house in the background.png', 'A [V] dog on top of pink fabric.png', 'A depressed [V] dog.png', 'A [V] dog with mountains in background.png', 'A barking [V] dog.png', 'A [V] dog in a chef outfit.png', 'A [V] dog jumping in a swimming pool.png', 'A [V] dog wearing headphones.png', 'A [V] dog with a city in the background.png', 'Painting of a [V] dog at a beach by artist Claude Monet.png']
+        populateGallery(images, 'krona', 'doggy', 'doggy_gallery');
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Living CAT -->
+
+
+    <div class="dataset">
+        <img src="./static/krona/cat/input/1.png" style="width: 180px;">
+        <img src="./static/krona/cat/input/2.png" style="width: 180px;">
+        <img src="./static/krona/cat/input/3.png" style="width: 180px;">
+        <img src="./static/krona/cat/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] cat</p>
+
+    <div id="cat_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] cat in chef outfit.png', 'A [V] cat wearing a rainbow scarf.png', 'A [V] cat with blue house in the background.png', 'A [V] cat on a purple rug In a forest.png', 'A [V] cat on wooden floor.png', 'A [V] cat on a cobblestone street.png', 'A [V] cat on the top pink fabric.png', 'A [V] cat with blue house in background.png', 'A [V] cat is snow.png', 'A [V] cat wearing a pink sunglasses.png', 'A [V] cat wearing a black hat and bow tie.png', 'A [V] cat in a police outfit.png', 'A [V] cat wet in water.png', 'A [V] cat with mountains in background.png', 'A [V] cat wearing purple wizard outfit.png', 'A [V] cat with city background.png', 'a [V] wearing a santa cap.png', 'A [V] cat wearing a red hat.png', 'A [V] cat in firefighter outfit.png']
+        populateGallery(images, 'krona', 'cat', 'cat_gallery');
+    </script>
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/cat2/input/1.png" style="width: 180px;">
+        <img src="./static/krona/cat2/input/2.png" style="width: 180px;">
+        <img src="./static/krona/cat2/input/3.png" style="width: 180px;">
+        <img src="./static/krona/cat2/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] cat</p>
+
+    <div id="cat2_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] cat in chef outfit.png', 'A [V] cat floating on water in pool.png', 'A [V] cat in doctor outfit.png', 'A [V] cat wearing a colourful scarf.png', 'A [V] cat with blue house in background.png', 'A [V] cat lying on a purple rug in forest.png', 'a [V] cat wearing pink sunglasses.png', 'a [V] cat wearing a purple wizard outfit.png', 'a [V] cat in front of city.png', 'A [V] cat on cobblestone street.png', 'A [V] cat in a beach.png', 'A [V] cat in police outfit.png', 'A [V] cat on pink cloth.png', 'A [V] cat wearing a santa cap.png', 'A [V] cat on a wooden floor.png', 'A [V] wet cat .png', 'A [V] cat in snow.png', 'A [V] cat in the Versailles Hall of Mirrors.png', 'A [V] cat with mountains in background.png', 'A [V] cat in the gardens of Versailles.png', 'a [V] cat in forest.png']
+        populateGallery(images, 'krona', 'cat2', 'cat2_gallery');
+    </script>
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/cat3/input/1.png" style="width: 180px;">
+        <img src="./static/krona/cat3/input/2.png" style="width: 180px;">
+        <img src="./static/krona/cat3/input/3.png" style="width: 180px;">
+        <img src="./static/krona/cat3/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] cat</p>
+
+    <div id="cat3_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] cat sleeping.png', 'A [V] cat in chef outfit.png', 'A [V] cat wearing a rainbow scarf.png', 'A [V] cat with blue house in the background.png', 'A [V] cat in front of mountains.png', 'A [V] cat in a dog house.png', 'A [V] cat angry and shouting.png', 'A [V] cat wearing pink sunglasses.png', 'A [V] cat in a purple wizard outfit.png', 'A [V] cat wearing sunglasses.png', 'A [V] cat in a beach.png', 'A [V] cat in police outfit.png', 'A [V] cat wearing a santa cap.png', 'A [V] cat getting a haircut.png', 'A [V] cat in superman outfit.png', 'A [V] cat in snow.png', 'A [V] cat in a cobblestone street.png', 'A [V] cat with city in background.png', 'A [V] cat in forest.png', 'A [V] cat lying on a wooden floor.png', 'A [V] cat on top of purple rug in forest.png']
+        populateGallery(images, 'krona', 'cat3', 'cat3_gallery');
+    </script>
+
+
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/cat4/input/1.png" style="width: 180px;">
+        <img src="./static/krona/cat4/input/2.png" style="width: 180px;">
+        <img src="./static/krona/cat4/input/3.png" style="width: 180px;">
+        <img src="./static/krona/cat4/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] cat</p>
+
+    <div id="cat4_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] cat in chef outfit.png', 'A [V] cat with blue house in the background.png', 'A [V] cat wearing a colourful scarf.png', 'A [V] cat on top of purple rug.png', 'A [V] cat wearing a Christmas cap.png', 'A [V] cat in purple wizard outfit.png', 'A [V] cat wearing yellow shirt.png', 'A [V] cat in front of mountains.png', 'A [V] cat wearing magic cap and bow tie.png', 'A [V] cat angry and shouting.png', 'A [V] cat wearing pink sunglasses.png', 'A [V] cat on top of wooden floor.png', 'A [V] cat in cobblestone street.png', 'A [V] cat in black suit outfit.png', 'A [V] cat in police outfit.png', 'A [V] cat in superman outfit.png', 'A [V] cat in snow.png', 'A [V] cat on top of pink fabric.png', 'A [V] cat with city in background.png', 'A [V] cat in forest.png']
+        populateGallery(images, 'krona', 'cat4', 'cat4_gallery');
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Non Living -->
+
+
+    <div class="dataset">
+        <img src="./static/krona/teapot/input/1.png" style="width: 180px;">
+        <img src="./static/krona/teapot/input/2.png" style="width: 180px;">
+        <img src="./static/krona/teapot/input/3.png" style="width: 180px;">
+        <img src="./static/krona/teapot/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] teapot</p>
+
+    <div id="teapot_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] teapot on top of wooden floor.png', 'A [V] teapot of purple colour.png', 'A [V] teapot on dirt road.png', 'A [V] teapot in front of Eiffel Tower.png', 'A [V] teapot with a city in background.png', 'A [V] teapot in front of wheat field.png', 'A [V] teapot in front of mountain.png', 'A [V] teapot with blue house in background.png', 'A [V] teapot in a beach.png', 'A [V] teapot in snow.png', 'A [V] teapot around autumn leaves.png', 'A [V] teapot in crowded street.png', 'A [V] teapot in front of mirror.png', 'A [V] teapot on white rug.png', 'A [V] teapot on cobblestone street.png', 'A [V] transparent teapot with lemon juice inside.png', 'A [V] teapot in forest.png', 'A [V] teapot shining.png', 'A [V] teapot floating on water.png', 'A [V] teapot in sunflower field.png']
+        populateGallery(images, 'krona', 'teapot', 'teapot_gallery');
+    </script>
+
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/robotToy/input/1.png" style="width: 180px;">
+        <img src="./static/krona/robotToy/input/2.png" style="width: 180px;">
+        <img src="./static/krona/robotToy/input/3.png" style="width: 180px;">
+        <img src="./static/krona/robotToy/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] toy</p>
+
+    <div id="robotToy_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] toy on top of wooden floor.png', 'A [V] toy on white rug.png', 'A [V] toy on top of pink cloth.png', 'A [V] toy in sunflower field.png', 'A [V] toy in snow.png', 'A [V] toy in front of city.png', 'A [V] toy with Eiffel Tower in background.png', 'A [V] toy in forest.png', 'A [V] toy floating on milk.png', 'A [V] toy with mountains in background.png', 'A [V] toy on beach.png', 'A [V] toy in wheat field.png', 'A [V] toy on top of  cobblestone road.png', 'A [V] toy as shiny toy.png', 'A [V] toy of red colour.png', 'A [V] toy on top of mirror.png']
+        populateGallery(images, 'krona', 'robotToy', 'robotToy_gallery');
+    </script>
+
+
+    <div class="dataset">
+        <img src="./static/krona/backpack/input/1.png" style="width: 180px;">
+        <img src="./static/krona/backpack/input/2.png" style="width: 180px;">
+        <img src="./static/krona/backpack/input/3.png" style="width: 180px;">
+        <img src="./static/krona/backpack/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] backpack</p>
+
+    <div id="backpack_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] backpack on cobble stone road.png', 'A [V] backpack in snow.png', 'A [V] backpack with city in background .png', 'A [V] backpack on top of white rug.png', 'A [V] backpack in water.png', 'A [V] backpack in wheat field.png', 'A [V] backpack in forest.png', 'A [V] backpack around autumn leaves.png', 'A [V] backpack on beach.png', 'A [V] backpack with mountains in background.png', 'A [V] backpack with Eiffel Tower in background.png', 'A [V] backpack of purple colour.png']
+        populateGallery(images, 'krona', 'backpack', 'backpack_gallery');
+    </script>
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/book/input/1.png" style="width: 180px;">
+        <img src="./static/krona/book/input/2.png" style="width: 180px;">
+        <img src="./static/krona/book/input/3.png" style="width: 180px;">
+        <img src="./static/krona/book/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] book</p>
+
+    <div id="book_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] book on table in library.png', 'A [V] book on beach.png', 'A [V] book with lily flowers in background.png', 'A [V] book with a plant showpiece.png', 'A [V] book in forest.png', 'A [V] book on wooden table.png', 'A [V] book in front of fireplace in house .png', 'A [V] book with castle buildings in background.png', 'A [V] book in front of autumn trees.png', 'A [V] book with city in background.png', 'A [V] book in dry forest.png', 'A [V] book with snow background.png']
+        populateGallery(images, 'krona', 'book', 'book_gallery');
+    </script>
+
+
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/dog_backpack/input/1.png" style="width: 180px;">
+        <img src="./static/krona/dog_backpack/input/2.png" style="width: 180px;">
+        <img src="./static/krona/dog_backpack/input/3.png" style="width: 180px;">
+        <img src="./static/krona/dog_backpack/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] backpack</p>
+
+    <div id="dog_backpack_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] backpack on top of the sidewalk in a crowded street.png', 'A [V] backpack with blue house in the background.png', 'A [V] backpack on a cobblestone street.png', 'A [V] backpack in of Eiffel Tower.png', 'A [V] backpack on top of green grass with sunflowers around it.png', 'A [V] backpack in wheat field.png', 'A [V] backpack floating on top of water.png', 'A [V] backpack on top of a wooden table.png', 'A [V] backpack on top of a dirt road.png', 'A [V] backpack with a mountain in the background.png', 'A [V] backpack in the jungle.png', 'A [V] backpack on top of a white rug.png', 'A [V] backpack on the beach.png', 'A [V] backpack with city in background.png', 'A [V] backpack with a tree and autumn leaves in the background.png', 'A [V] backpack of purple colour.png']
+        populateGallery(images, 'krona', 'dog_backpack', 'dog_backpack_gallery');
+    </script>
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/rc_car/input/1.png" style="width: 180px;">
+        <img src="./static/krona/rc_car/input/2.png" style="width: 180px;">
+        <img src="./static/krona/rc_car/input/3.png" style="width: 180px;">
+        <img src="./static/krona/rc_car/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] car</p>
+
+    <div id="rc_car_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] toy on white rug.png', 'A [V] toy as sports car.png', 'A [V] toy in sunflower field.png', 'A [V] toy in snow.png', 'A [V] toy in front of city.png', 'A [V] toy in front of Eiffel Tower.png', 'A [V] toy in forest.png', 'A [V] toy floating on water.png', 'A [V] toy on wooden floor.png', 'A [V] toy in cube shape.png', 'A [V] toy of purple colour.png', 'A [V] toy in front of wheat field.png']
+        populateGallery(images, 'krona', 'rc_car', 'rc_car_gallery');
+    </script>
+
+
+    <div class="dataset">
+        <img src="./static/krona/shinyShoes/input/1.png" style="width: 180px;">
+        <img src="./static/krona/shinyShoes/input/2.png" style="width: 180px;">
+        <img src="./static/krona/shinyShoes/input/3.png" style="width: 180px;">
+        <img src="./static/krona/shinyShoes/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] shoes</p>
+
+    <div id="shinyShoes_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] shiny shoes with the other shoe, as a pair.png', 'A [V] shiny shoes in front of city.png', 'A [V] shiny shoes with Eiffel Tower in background.png', 'A [V] shiny shoes on a busy road.png', 'A [V] shiny shoes in beach.png', 'A [V] shiny shoes with mountains in background.png', 'A [V] shiny shoes on cobble stone road.png', 'A [V] shiny shoes on top of wooden floor.png', 'A [V] shiny shoes in snow.png', 'A [V] shiny shoes with blue house in background.png', 'A [V] shiny shoes floating on water.png', 'A [V] shiny shoes red in colour.png', 'A [V] shiny shoes purple in colour.png', 'A [V] shiny shoes on top of mirror.png', 'A [V] shiny shoes on wheat field.png']
+        populateGallery(images, 'krona', 'shinyShoes', 'shinyShoes_gallery');
+    </script>
+
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/duck/input/1.png" style="width: 180px;">
+        <img src="./static/krona/duck/input/2.png" style="width: 180px;">
+        <img src="./static/krona/duck/input/3.png" style="width: 180px;">
+        <img src="./static/krona/duck/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] toy</p>
+
+    <div id="duck_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] toy on top of wooden floor.png', 'A [V] toy in sunflower field.png', 'A [V] toy in snow.png', 'A [V] toy around autumn leaves.png', 'A [V] toy on pink fabric.png', 'A [V] toy on cobblestone street.png', 'A [V] toy in front of mountain.png', 'A [V] toy in front of Eiffel Tower.png', 'A [V] toy on dirt road.png', 'A [V] toy in a beach.png', 'A [V] toy on purple rug in a forest.png', 'A [V] toy with city in background.png', 'A [V] toy with blue house in background.png', 'A [V] toy in front of wheat field.png', 'A [V] toy on crowded street.png', 'A [V] toy of red colour.png', 'A [V] toy on top of mirror.png']
+        populateGallery(images, 'krona', 'duck', 'duck_gallery');
+    </script>
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/clock/input/1.png" style="width: 180px;">
+        <img src="./static/krona/clock/input/2.png" style="width: 180px;">
+        <img src="./static/krona/clock/input/3.png" style="width: 180px;">
+        <img src="./static/krona/clock/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] clock</p>
+
+    <div id="clock_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] clock in wheat field.png', 'A [V] clock on top of mirror.png', 'A [V] clock floating on water.png', 'A [V] clock in sand.png', 'A [V] clock in cube shape.png', 'A [V] clock in front of Eiffel Tower.png', 'A [V] clock in forest.png', 'A [V] clock with a city in background.png', 'A [V] clock on top of purple rung in forest.png', 'A [V] clock of purple colour.png', 'A [V] clock on white rug.png', 'A [V] clock on cobblestone street.png', 'A [V] clock on top of pink cloth.png', 'A [V] clock floating on milk.png', 'A [V] clock in snow.png', 'A [V] clock around autumn leaves.png', 'A [V] clock in crowded street.png', 'A [V] clock of red colour.png', 'A [V] clock in front of mountain.png', 'A [V] clock in sunflower field.png', 'A [V] clock on top of wooden floor.png']
+        populateGallery(images, 'krona', 'clock', 'clock_gallery');
+    </script>
+
+
+    <div class="dataset">
+        <img src="./static/krona/bear_plushie/input/1.png" style="width: 180px;">
+        <img src="./static/krona/bear_plushie/input/2.png" style="width: 180px;">
+        <img src="./static/krona/bear_plushie/input/3.png" style="width: 180px;">
+        <img src="./static/krona/bear_plushie/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] Plushie</p>
+
+    <div id="bear_plushie_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] plushie in forest.png', 'A [V] plushie in front of castle.png', 'a [V] plushie in beach.png', 'A [V] plushie with blue house in the background.png', 'a [V] plushie in the cobblestone street.png', 'a [V] plushie of purple colour.png', 'a [V] plushie with mountains in background.png', 'A [V] plushie in wheat field.png', 'A [V] plushie in front of island.png', 'a [V] plushie in front of Eiffel Tower.png', 'a [V] plushie with autumn leaves inside.png', 'a [V] plushie of red colour.png', 'A [V] plushie on a road in city.png', 'A [V] plushie with city in background.png', 'A [V] plushie on a pink fabric.png', 'a [V] plushie floating on water.png', 'A [V] plushie in snow.png', 'a [V] plushie on purple rug in forest.png', 'A [V] plushie in times square.png', 'A [V] plushie with sunflowers field around it.png', 'a [V] plushie on wooden floor.png']
+        populateGallery(images, 'krona', 'bear_plushie', 'bear_plushie_gallery');
+    </script>
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/monstertoy/input/1.png" style="width: 180px;">
+        <img src="./static/krona/monstertoy/input/2.png" style="width: 180px;">
+        <img src="./static/krona/monstertoy/input/3.png" style="width: 180px;">
+        <img src="./static/krona/monstertoy/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] Plushie</p>
+
+    <div id="monstertoy_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] toy on top of wooden floor.png', 'A [V] toy of sky blue colour on beach.png', 'A [V] toy on cobblestone road.png', 'A [V] toy in sunflower field.png', 'A [V] toy in snow.png', 'A [V] toy floating in sea.png', 'A [V] toy of green cube shaped.png', 'A [V] toy with Eiffel Tower in background.png', 'A [V] toy on dirt road.png', 'A [V] toy in forest.png', 'A [V] toy floating on water.png', 'A [V] toy purple in colour with four eyes.png', 'A [V] toy with mountains in background.png', 'A [V] toy with city in background.png', 'A [V] toy surrounded by autumn leaves.png', 'A [V] toy hugging another blue colour [V] monster toy.png', 'A [V] toy wet in water.png', 'A [V] toy with blue eyes.png', 'A [V] on a crowded street.png']
+        populateGallery(images, 'krona', 'monstertoy', 'monstertoy_gallery');
+    </script>
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/plushie_new/input/1.png" style="width: 180px;">
+        <img src="./static/krona/plushie_new/input/2.png" style="width: 180px;">
+        <img src="./static/krona/plushie_new/input/3.png" style="width: 180px;">
+        <img src="./static/krona/plushie_new/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] Plushie</p>
+
+    <div id="plushie_new_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] Plushie on a dirt road.png', 'A [V] Plushie in front of castle.png', 'A [V] Plushie on the beach.png', 'A [V] Plushie in the snow.png', 'A [V] Plushie with blue house in the background.png', 'A [V] Plushie in sunflower field.png', 'A [V] Plushie with Eiffel Tower in in the background.png', 'A [V] Plushie on top of a wooden floor.png', 'A [V] Plushie on a cobblestone street.png', 'A [V] Plushie in a crowded street.png', 'A [V] Plushie with a mountain in the background.png', 'A [V] Plushie with a city in the background.png', 'A [V] Plushie floating on water.png', 'A [V] Plushie on pink fabric.png', 'A [V] Plushie in front of times square.png', 'A [V] Plushie in front of an island.png']
+        populateGallery(images, 'krona', 'plushie_new', 'plushie_new_gallery');
+    </script>
+
+
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/teddy/input/1.png" style="width: 180px;">
+        <img src="./static/krona/teddy/input/2.png" style="width: 180px;">
+        <img src="./static/krona/teddy/input/3.png" style="width: 180px;">
+        <img src="./static/krona/teddy/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] Plushie</p>
+
+    <div id="teddy_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] plushie in forest.png', 'A [V] plushie wearing a police cap.png', 'A [V] plushie in nurse outfit.png', 'A [V] plushie in an samurai outfit.png', 'A [V] plushie in chefs outfit.png', 'A [V] plushie on a cobblestones street.png', 'A [V] plushie made of golden colour.png', 'A [V] plushie wearing a rainbow scarf.png', 'A [V] plushie of yellow colour.png', 'A [V] plushie in blue suit with a cup of coffee and a plate.png', 'A [V] plushie painting in a jungle.png', 'A [V] plushie wearing a Santa hat.png', 'A [V] plushie on top of pink fabric.png', 'A [V] plushie of red colour.png', 'A [V] plushie in front of blue house.png', 'A [V] plushie floating on water.png', 'A [V] plushie wearing a pink sunglasses.png', 'A [V] plushie on a skateboard in front of times square.png', 'A [V] plushiein black wizard outfit.png', 'A [V] plushie with a city in background.png', 'A [V] plushie in wings outfit.png', 'A [V] plushie in superman outfit.png', 'A [V] plushie of brownish pink colour.png', 'A [V] plushie wearing a red cap.png', 'A [V] plushie on wooden floor.png']
+        populateGallery(images, 'krona', 'teddy', 'teddy_gallery');
+    </script>
+
+
+    <div class="dataset">
+        <img src="./static/krona/yellow_plushie/input/1.png" style="width: 180px;">
+        <img src="./static/krona/yellow_plushie/input/2.png" style="width: 180px;">
+        <img src="./static/krona/yellow_plushie/input/3.png" style="width: 180px;">
+        <img src="./static/krona/yellow_plushie/input/4.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] Plushie</p>
+
+    <div id="yellow_plushie_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] toy on top of wooden floor.png', 'A [V] toy in front of castle.png', 'A [V] toy in snow.png', 'A [V] toy in beach.png', 'A [V] toy in grand canyon.png', 'A [V] toy in a crowded street.png', 'A [V] toy looking like a mouse.png', 'A [V] toy painting with water colours.png', 'A [V] toy in front of ocean.png', 'A [V] toy with city in background.png', 'A [V] toy in wheat field.png', 'A [V] toy painting portrait.png', 'A [V] toy on top of laptop.png', 'A [V] toy in New York city.png']
+        populateGallery(images, 'krona', 'yellow_plushie', 'yellow_plushie_gallery');
+    </script>
+
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/building/input/1.png" style="width: 180px;">
+        <img src="./static/krona/building/input/2.png" style="width: 180px;">
+        <img src="./static/krona/building/input/3.png" style="width: 180px;">
+
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] building</p>
+
+    <div id="building_gallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A village on mountains with similar architecture to [V] building.png', 'A [V] building as a destination resort covered with snow.png', 'A [V] building with with car parked in front.png', 'A [V] building fantasy castle building with towering spires and majestic.png', 'Puppies in front of a [V] building.png', 'A [V] building as an old photograph.png', 'A [V] building floating on top of water.png', 'A [V] building painting as a house.png', "Georgia O'Keeffe style [V] building barn painting.png", 'A [V] building in mountains with clouds.png', 'Autumn leaves in front of [V] building.png', 'A [V] building in front of a lightning strike.png', 'Painting of a [V] building  in the style of van gogh.png', 'A [V] building painting 3d render geometric style.png', 'A [V] building made of Minecraft blocks.png', 'Top view of [V] building.png', 'A [V] building at sunset in background.png', 'A [V] building in spring season.png', 'A [V] building in northern lights.png']
+        populateGallery(images, 'krona', 'building', 'building_gallery');
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="dataset">
+        <img src="./static/krona/vase/input/1.png" style="width: 180px;">
+        <img src="./static/krona/vase/input/2.png" style="width: 180px;">
+        <img src="./static/krona/vase/input/3.png" style="width: 180px;">
+        <img src="./static/krona/vase/input/4.png" style="width: 180px;">
+    </div>
+    <p class="caption" style="border: none; box-shadow: none;">A [V] Vase</p>
+
+    <div id="vasegallery" class="gallery">
+        <!-- Images will be inserted here by JavaScript -->
+    </div>
+
+    <script src="./static/js/gallery.js"></script>
+
+    <script>
+        var images = ['A [V] Vase buried in sand.png', 'A [V] Vase in cobblestone street.png', 'A [V] Vase in front of Eiffel Tower.png', 'A [V] Vase transparent vase with milk inside.png', 'A [V] Vase in snow.png', 'A [V] Vase in beach.png', 'two [V] vases on a table.png', 'A [V] Vase with mountains in background.png', 'A [V] Vase on a crowded road.png', 'A [V] Vase floating on water.png', 'A [V] Vase with autumn leaves inside.png', 'A [V] Vase of pink colour.png', 'A shiny [V] Vase.png']
+        populateGallery(images, 'krona', 'vase', 'vasegallery');
+    </script>
+
+
+
+
+
+
     <hr class="divider">
 </body>
+
 </html>
