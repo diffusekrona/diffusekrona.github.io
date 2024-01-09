@@ -13,9 +13,9 @@ function populateGallery(imageUrls, krona_or_lora ,fname, galleryId) {
 
         // Create a caption for each image
         var caption = document.createElement('h6');
-        caption.textContent = image.replace('.png', ''); // Remove .png from the filename
+        caption.textContent = image.replace('.jpg', ''); // Remove .png from the filename
         caption.className = 'caption'; // Add the 'caption' class to the caption
-        caption.setAttribute('data-text', image.replace('.png', '')); // Set data-text attribute
+        caption.setAttribute('data-text', image.replace('.jpg', '')); // Set data-text attribute
 
         container.appendChild(caption);
         gallery.appendChild(container);
