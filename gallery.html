@@ -166,7 +166,10 @@
             'Anime avatar of a [V] face.jpg',
             'Photo of a [V] face taking a shot in basketball.jpg'
         ];
-
+        // Remove the last 4 characters (".jpg") from each image name
+        images = images.map(function(image) {
+            return image.slice(0, -4);
+        });
         console.log(images);
         populateGallery(images, 'krona', 'human_harshit', 'harshit_gallery');
     </script>
